@@ -1,253 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Eleanor Palmer Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600&display=swap">
 <style>
-/* Layout: lab-notebook page. Narrow header, three project sheets each with a design>test>prototype>build strip and a spec table. */
+/* Layout: two views in one file. Home = intro with arched headshot, about, resume, contact. Projects = three project features plus earlier builds. */
 :root {
-  --bg: #eef1ee;
-  --surface: #f9faf8;
-  --fg: #172326;
-  --muted: #566468;
-  --line: #c9d1cd;
-  --accent: #d9501b;
+  --bg: #fdf7f7;
+  --surface: #ffffff;
+  --tint: #f7ecee;
+  --tint-2: #f1edf5;
+  --fg: #2d2332;
+  --muted: #6e6174;
+  --line: #ecdfe2;
+  --accent: #a23b5c;
+  --accent-soft: #f8e4ea;
   --accent-ink: #ffffff;
   --ph: #8a5a12;
-  --ph-bg: #f6ead2;
-  --grid: rgba(23, 35, 38, 0.05);
-  --font-display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
-  --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --ph-bg: #fbf0d8;
+  --nav-bg: rgba(253, 247, 247, 0.9);
+  --font-display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --font-body: "Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #101719; --surface: #172124; --fg: #e8eeeb; --muted: #94a3a6; --line: #2c3a3e;
-    --accent: #ff7a45; --accent-ink: #101719; --ph: #e9c27a; --ph-bg: #2b2412; --grid: rgba(232, 238, 235, 0.045);
+    --bg: #1b1420; --surface: #241b2a; --tint: #2b2031; --tint-2: #251e30; --fg: #f2e9f1; --muted: #b7a8bb; --line: #3a2d42;
+    --accent: #e58aa6; --accent-soft: #3c2330; --accent-ink: #1b1420; --ph: #e9c27a; --ph-bg: #2e2612; --nav-bg: rgba(27, 20, 32, 0.9);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #101719; --surface: #172124; --fg: #e8eeeb; --muted: #94a3a6; --line: #2c3a3e;
-  --accent: #ff7a45; --accent-ink: #101719; --ph: #e9c27a; --ph-bg: #2b2412; --grid: rgba(232, 238, 235, 0.045);
+  --bg: #1b1420; --surface: #241b2a; --tint: #2b2031; --tint-2: #251e30; --fg: #f2e9f1; --muted: #b7a8bb; --line: #3a2d42;
+  --accent: #e58aa6; --accent-soft: #3c2330; --accent-ink: #1b1420; --ph: #e9c27a; --ph-bg: #2e2612; --nav-bg: rgba(27, 20, 32, 0.9);
   color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
-  background-color: var(--bg);
-  background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background: var(--bg);
   color: var(--fg);
   font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 17px;
+  line-height: 1.7;
   padding-inline: 20px;
-  padding-block: 0 64px;
+  padding-block: 0 48px;
 }
-.wrap { max-width: 980px; margin-inline: auto; }
-a { color: inherit; }
-:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.wrap { max-width: 1040px; margin-inline: auto; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+section, [id] { scroll-margin-top: 76px; }
 
-.draftbar {
-  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em;
-  background: var(--ph-bg); color: var(--ph);
-  margin-inline: -20px; padding: 8px 20px; text-align: center;
+nav.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--nav-bg); backdrop-filter: blur(8px);
+  margin-inline: -20px; padding-inline: 20px; border-bottom: 1px solid var(--line);
 }
+nav.bar .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 4px 20px; padding-block: 12px; }
+.brand { font-family: var(--font-display); font-weight: 700; font-size: 24px; line-height: 1.1; color: var(--fg); text-decoration: none; letter-spacing: 0.005em; }
+nav.bar ul { display: flex; flex-wrap: wrap; gap: 2px 24px; list-style: none; margin: 0; padding: 0; }
+nav.bar ul a { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; padding-block: 6px; border-bottom: 2px solid transparent; }
+nav.bar ul a:hover { color: var(--accent); }
+nav.bar ul a[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
 
-header.top { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: baseline; padding-block: 28px 0; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
-header.top b { color: var(--fg); font-weight: 500; }
+.eyebrow { font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
 
-.hero { padding-block: 56px 48px; border-bottom: 2px solid var(--fg); }
-.eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px; }
-h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(56px, 12vw, 120px); line-height: 0.92; letter-spacing: 0.005em; text-transform: uppercase; margin: 0 0 24px; text-wrap: balance; }
-.lede { max-width: 60ch; font-size: 19px; margin: 0 0 28px; }
-.facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
-.facts li { font-family: var(--font-mono); font-size: 13px; border: 1px solid var(--fg); padding: 5px 10px; }
+/* Home hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px 64px; align-items: center; padding-block: 72px 80px; }
+@media (max-width: 800px) { .hero { grid-template-columns: minmax(0, 1fr); padding-block: 48px 56px; } .portrait { order: -1; } }
+h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(52px, 9vw, 92px); line-height: 0.98; letter-spacing: -0.01em; margin: 0 0 22px; text-wrap: balance; }
+h1 em { font-style: italic; color: var(--accent); font-weight: 500; }
+.tagline { font-family: var(--font-display); font-weight: 500; font-size: clamp(22px, 3.2vw, 28px); line-height: 1.3; margin: 0 0 16px; max-width: 28ch; }
+.lede { color: var(--muted); max-width: 52ch; margin: 0 0 30px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 26px; }
+.btn { display: inline-block; font-weight: 500; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 26px; border-radius: 999px; text-decoration: none; border: 1.5px solid var(--accent); cursor: pointer; font-family: var(--font-body); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:hover { filter: brightness(1.07); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.chips li { font-size: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; color: var(--muted); }
 
-.sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; padding-block: 56px 20px; }
-h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(32px, 6vw, 48px); text-transform: uppercase; line-height: 1; margin: 0; letter-spacing: 0.01em; }
-.sec-head p { margin: 0; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.portrait { display: grid; place-items: center; padding: 14px; }
+.frame { position: relative; width: min(340px, 100%); aspect-ratio: 4 / 5; border-radius: 999px 999px 28px 28px; background: linear-gradient(180deg, var(--accent-soft), var(--tint-2)); display: grid; place-content: center; text-align: center; gap: 4px; color: var(--muted); }
+.frame::after { content: ""; position: absolute; inset: -14px; border: 1.5px solid var(--accent); border-radius: 999px 999px 40px 40px; opacity: 0.45; pointer-events: none; }
+.frame .initials { font-family: var(--font-display); font-size: 64px; font-weight: 600; line-height: 1; color: var(--accent); }
+.frame small { font-size: 13px; letter-spacing: 0.06em; }
+.frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
 
-.sheet { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--fg); margin-bottom: 28px; }
-.sheet-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; padding: 20px 24px 0; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-.sheet-body { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 28px 40px; padding: 12px 24px 28px; }
-@media (max-width: 760px) { .sheet-body { grid-template-columns: minmax(0, 1fr); } }
-h3 { font-family: var(--font-display); font-weight: 700; font-size: 34px; line-height: 1.05; text-transform: uppercase; margin: 0 0 12px; text-wrap: balance; }
-.sheet p { margin: 0 0 14px; max-width: 62ch; }
-.label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 18px 0 6px; display: block; }
+/* Blocks */
+.block { padding-block: 72px; border-top: 1px solid var(--line); }
+h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(36px, 5.5vw, 52px); line-height: 1.05; letter-spacing: -0.005em; margin: 0 0 10px; }
+.sub { color: var(--muted); margin: 0 0 36px; max-width: 58ch; }
 
-.ph { color: var(--ph); background: var(--ph-bg); padding: 1px 6px; font-family: var(--font-mono); font-size: 0.86em; }
+.about { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px 56px; align-items: start; }
+@media (max-width: 800px) { .about { grid-template-columns: minmax(0, 1fr); } }
+.about p { margin: 0 0 16px; max-width: 62ch; }
+.facts { margin: 0; padding: 24px; background: var(--tint); border-radius: 20px; display: grid; gap: 16px; }
+.facts div { min-width: 0; }
+.facts dt { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin: 0 0 2px; }
+.facts dd { margin: 0; }
 
-.photo { aspect-ratio: 4 / 3; max-width: 100%; border: 1.5px dashed var(--line); display: grid; place-items: center; text-align: center; padding: 16px; color: var(--muted); font-family: var(--font-mono); font-size: 12px; background: repeating-linear-gradient(135deg, transparent 0 10px, var(--grid) 10px 11px); }
+.resume { background: var(--tint); border-radius: 24px; padding: 40px 36px; display: grid; gap: 36px; }
+@media (max-width: 800px) { .resume { padding: 28px 22px; } }
+.resume-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; }
+.resume-top p { margin: 0; color: var(--muted); max-width: 48ch; }
+.resume-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px 48px; }
+.resume h3 { font-family: var(--font-display); font-weight: 700; font-size: 26px; line-height: 1.15; margin: 0 0 14px; }
+.job { display: grid; gap: 0; padding-block: 12px; border-top: 1px solid var(--line); min-width: 0; }
+.job:first-of-type { border-top: 0; padding-top: 0; }
+.job b { font-weight: 600; }
+.job span { color: var(--muted); font-size: 15px; }
+.job .when { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+.list { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.list li { padding-left: 16px; position: relative; }
+.list li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 
-.spec { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 14px; }
-.spec th, .spec td { text-align: left; padding: 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
-.spec th { font-family: var(--font-mono); font-weight: 400; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); width: 40%; padding-right: 12px; }
+.contact-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 0; }
+.contact-list > div { border: 1px solid var(--line); border-radius: 18px; padding: 20px 22px; background: var(--surface); min-width: 0; }
+.contact-list dt { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin: 0 0 6px; }
+.contact-list dd { margin: 0; overflow-wrap: anywhere; }
+.copy { margin-top: 10px; font-family: var(--font-body); font-weight: 500; font-size: 13px; letter-spacing: 0.06em; background: var(--accent-soft); color: var(--accent); border: 0; padding: 6px 14px; border-radius: 999px; cursor: pointer; }
+.copy:hover { filter: brightness(0.97); }
 
-.stages { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); }
-@media (max-width: 760px) { .stages { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.stages li { padding: 14px 24px 18px 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 14px; }
-.stages li:last-child { border-right: 0; }
-@media (max-width: 760px) { .stages li:nth-child(2n) { border-right: 0; } }
-.stages .n { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 4px; font-weight: 500; }
-.stages strong { display: block; font-weight: 600; margin-bottom: 4px; }
+/* Projects view */
+.page-head { padding-block: 64px 40px; }
+.page-head h1 { font-size: clamp(46px, 8vw, 76px); margin-bottom: 14px; }
+.page-head p { max-width: 62ch; color: var(--muted); margin: 0 0 22px; }
+.steps { display: flex; flex-wrap: wrap; gap: 8px 10px; list-style: none; margin: 0; padding: 0; align-items: center; }
+.steps li { font-size: 14px; font-weight: 500; letter-spacing: 0.06em; background: var(--accent-soft); color: var(--accent); padding: 4px 16px; border-radius: 999px; }
+.steps li + li::before { content: "\2192"; margin-right: 10px; color: var(--muted); }
+.steps li + li { background: transparent; padding-left: 0; }
+.steps li + li span { background: var(--accent-soft); padding: 4px 16px; border-radius: 999px; }
 
-.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-.box { background: var(--surface); border: 1px solid var(--line); padding: 20px 22px; min-width: 0; }
-.box h3 { font-size: 24px; margin-bottom: 10px; }
-.box ul { margin: 0; padding-left: 18px; }
-.box li { margin-bottom: 4px; }
+.feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 28px 48px; align-items: start; padding-block: 48px; border-top: 1px solid var(--line); }
+.feature:nth-of-type(even) .shot { order: 2; }
+@media (max-width: 800px) { .feature { grid-template-columns: minmax(0, 1fr); } .feature:nth-of-type(even) .shot { order: 0; } }
+.shot { aspect-ratio: 4 / 3; max-width: 100%; border-radius: 22px; background: linear-gradient(160deg, var(--accent-soft), var(--tint-2)); display: grid; place-items: center; text-align: center; padding: 20px; color: var(--muted); font-size: 14px; }
+.num { font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+h3.title { font-family: var(--font-display); font-weight: 600; font-size: clamp(32px, 4.6vw, 42px); line-height: 1.08; margin: 6px 0 12px; }
+.feature p { margin: 0 0 14px; color: var(--muted); max-width: 58ch; }
+.feature .list { margin-bottom: 18px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.tags li { font-size: 14px; background: var(--accent-soft); color: var(--accent); padding: 3px 14px; border-radius: 999px; }
 
-.contact { margin-top: 56px; background: var(--fg); color: var(--bg); padding: 32px 28px; display: grid; gap: 14px; }
-.contact h2 { color: var(--bg); }
-.contact p { margin: 0; max-width: 56ch; }
-.mail { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-.mail code { font-family: var(--font-mono); font-size: 16px; user-select: all; overflow-wrap: anywhere; }
-button.copy { font-family: var(--font-mono); font-size: 13px; background: var(--accent); color: var(--accent-ink); border: 0; padding: 8px 14px; cursor: pointer; }
-button.copy:hover { filter: brightness(1.08); }
-.contact .ph { background: transparent; color: var(--accent); padding: 0; }
-footer { font-family: var(--font-mono); font-size: 12px; color: var(--muted); padding-top: 24px; }
+.earlier { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.mini { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px; min-width: 0; }
+.mini h3 { font-family: var(--font-display); font-weight: 700; font-size: 26px; line-height: 1.15; margin: 4px 0 8px; }
+.mini p { margin: 0 0 12px; color: var(--muted); }
+
+.ph { color: var(--ph); background: var(--ph-bg); padding: 0 6px; border-radius: 4px; font-size: 0.92em; }
+.shot .ph, .frame .ph { background: transparent; padding: 0; }
+
+.cta { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+footer { border-top: 1px solid var(--line); padding-top: 24px; font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
 </style>
+</head>
+<body>
 
-<div class="draftbar">DRAFT. Text highlighted like <span class="ph">[this]</span> is a placeholder. Replace it with your real details.</div>
+<nav class="bar" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top">Eleanor Palmer</a>
+    <ul>
+      <li><a href="#top" data-nav="home" aria-current="page">Home</a></li>
+      <li><a href="#projects" data-nav="projects">Projects</a></li>
+      <li><a href="#resume" data-nav="resume">Resume</a></li>
+      <li><a href="#contact" data-nav="contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
 <div class="wrap">
-  <header class="top">
-    <span><b>Eleanor Palmer</b> / Engineering portfolio</span>
-    <span>Looking for: Summer 2027 internship / Boston or New York</span>
+
+<!-- ============ HOME ============ -->
+<main id="view-home">
+  <header class="hero" id="top">
+    <div>
+      <p class="eyebrow">Mechanical engineering / Summer 2027 internships</p>
+      <h1>Hello, I'm <em>Eleanor.</em></h1>
+      <p class="tagline">I design, test and build things that work.</p>
+      <p class="lede">I'm a mechanical engineering student who likes taking an idea all the way from sketch to a working device, with the CAD, the hardware and the code to match.</p>
+      <div class="actions">
+        <a class="btn primary" href="#projects">View my projects</a>
+        <a class="btn ghost" href="#resume">Resume</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/eleanor-palmer38" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <ul class="chips">
+        <li>Washington University in St. Louis</li>
+        <li>Boston or New York</li>
+      </ul>
+    </div>
+    <div class="portrait">
+      <div class="frame">
+        <span class="initials">EP</span>
+        <small><span class="ph">[Add your headshot as headshot.jpg]</span></small>
+        <img src="headshot.jpg" alt="Portrait of Eleanor Palmer" onerror="this.remove()">
+      </div>
+    </div>
   </header>
 
-  <section class="hero">
-    <p class="eyebrow">Design. Test. Prototype. Build.</p>
-    <h1>Physical devices, built by hand</h1>
-    <p class="lede">Last summer I took three projects from first sketch to working hardware. Each one went through the full loop: design it, test the idea, prototype it, then build the real thing. Some run on <span class="ph">[Arduino boards]</span> and code I wrote myself.</p>
-    <ul class="facts">
-      <li>3 projects</li>
-      <li>Summer 2026</li>
-      <li>Hardware + firmware</li>
-      <li><span class="ph">[Your school, major, grad year]</span></li>
-    </ul>
+  <section class="block" id="about">
+    <p class="eyebrow">About</p>
+    <h2>A little about me</h2>
+    <p class="sub">The short version.</p>
+    <div class="about">
+      <div>
+        <p>I'm studying mechanical engineering at Washington University in St. Louis, with a minor in computer science. I like work where I can sketch an idea, model it in CAD, build it in the shop and write the code that runs it.</p>
+        <p>This past summer I worked with Motim Industries and Mass General Hospital, where I designed and built three manufacturing tools for computed tomography machine components, from first design through fabrication and documentation.</p>
+        <p>I'm looking for an engineering internship for summer 2027 in Boston or New York. Outside of class I sail, surf, hike, ski and cook, and I'm into fashion and creative design.</p>
+        <p><span class="ph">[Edit this bio so it sounds like you. I wrote it from your resume.]</span></p>
+      </div>
+      <dl class="facts">
+        <div><dt>Studying</dt><dd>B.S. Mechanical Engineering, minor in Computer Science. Expected May 2028.</dd></div>
+        <div><dt>Looking for</dt><dd>Engineering internship, summer 2027</dd></div>
+        <div><dt>Locations</dt><dd>Boston, MA and New York, NY</dd></div>
+        <div><dt>Tools</dt><dd>SolidWorks, 3D printing, lathe, mill, soldering, Arduino, C++, Python</dd></div>
+      </dl>
+    </div>
   </section>
 
-  <div class="sec-head"><h2>Projects</h2><p>Summer 2026 / three builds</p></div>
-
-  <article class="sheet" id="project-1">
-    <div class="sheet-head"><span>Project 01</span><span><span class="ph">[Month]</span> to <span class="ph">[Month]</span> 2026 / <span class="ph">[Solo or team of N]</span></span></div>
-    <div class="sheet-body">
-      <div>
-        <h3><span class="ph">[Project name]</span></h3>
-        <p><span class="ph">[One sentence: what the device does and who or what it is for.]</span></p>
-        <span class="label">The problem</span>
-        <p><span class="ph">[What needed solving, and the requirement that mattered most. Include a number if you have one, such as a target weight, range, or time.]</span></p>
-        <span class="label">What I did</span>
-        <p><span class="ph">[Your role and the key decisions you made. Say what you designed, what you coded, and what you machined or assembled.]</span></p>
-        <span class="label">Result</span>
-        <p><span class="ph">[What it did when tested, with a measured result if possible.]</span></p>
+  <section class="block" id="resume">
+    <p class="eyebrow">Resume</p>
+    <h2>Education and experience</h2>
+    <p class="sub">A quick look. The full one-page version is a PDF.</p>
+    <div class="resume">
+      <div class="resume-top">
+        <p>Download my resume to see the full details of each role.</p>
+        <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">View resume (PDF)</a>
       </div>
-      <div>
-        <div class="photo">[Photo of finished device<br>or short demo clip]</div>
-        <table class="spec">
-          <tr><th>Controller</th><td><span class="ph">[Arduino model, or none]</span></td></tr>
-          <tr><th>Sensors / actuators</th><td><span class="ph">[List]</span></td></tr>
-          <tr><th>Tools</th><td><span class="ph">[CAD, 3D printer, soldering, etc.]</span></td></tr>
-          <tr><th>Code</th><td><span class="ph">[Link to repo, if public]</span></td></tr>
-        </table>
-      </div>
-    </div>
-    <ol class="stages">
-      <li><span class="n">1 / Design</span><span class="ph">[Sketches, CAD, requirements]</span></li>
-      <li><span class="n">2 / Test</span><span class="ph">[What you tested and what you learned]</span></li>
-      <li><span class="n">3 / Prototype</span><span class="ph">[First working version]</span></li>
-      <li><span class="n">4 / Build</span><span class="ph">[Final version and what changed]</span></li>
-    </ol>
-  </article>
-
-  <article class="sheet" id="project-2">
-    <div class="sheet-head"><span>Project 02</span><span><span class="ph">[Month]</span> to <span class="ph">[Month]</span> 2026 / <span class="ph">[Solo or team of N]</span></span></div>
-    <div class="sheet-body">
-      <div>
-        <h3><span class="ph">[Project name]</span></h3>
-        <p><span class="ph">[One sentence: what the device does and who or what it is for.]</span></p>
-        <span class="label">The problem</span>
-        <p><span class="ph">[What needed solving, and the requirement that mattered most.]</span></p>
-        <span class="label">What I did</span>
-        <p><span class="ph">[Your role and the key decisions you made.]</span></p>
-        <span class="label">Result</span>
-        <p><span class="ph">[What it did when tested, with a measured result if possible.]</span></p>
-      </div>
-      <div>
-        <div class="photo">[Photo of finished device<br>or short demo clip]</div>
-        <table class="spec">
-          <tr><th>Controller</th><td><span class="ph">[Arduino model, or none]</span></td></tr>
-          <tr><th>Sensors / actuators</th><td><span class="ph">[List]</span></td></tr>
-          <tr><th>Tools</th><td><span class="ph">[CAD, 3D printer, soldering, etc.]</span></td></tr>
-          <tr><th>Code</th><td><span class="ph">[Link to repo, if public]</span></td></tr>
-        </table>
+      <div class="resume-grid">
+        <div>
+          <h3>Experience</h3>
+          <div class="job"><span class="when">May to Aug 2026</span><b>Mechanical Engineer &amp; Product Developer</b><span>Motim Industries x Mass General Hospital, Newport, RI</span></div>
+          <div class="job"><span class="when">May to Aug 2025</span><b>Manufacturing Assistant</b><span>Refleece, Fall River, MA</span></div>
+          <div class="job"><span class="when">Aug 2023 to Jun 2024</span><b>Software Engineering Co-op</b><span>Audible, Cambridge, MA</span></div>
+          <div class="job"><span class="when">Jun to Aug 2023</span><b>Research Assistant</b><span>Northeastern University, power electronics lab, Boston, MA</span></div>
+        </div>
+        <div>
+          <h3>Education</h3>
+          <div class="job"><span class="when">Expected May 2028</span><b>Washington University in St. Louis</b><span>McKelvey School of Engineering. B.S. Mechanical Engineering, minor in Computer Science.</span></div>
+          <h3 style="margin-top:28px">Skills and involvement</h3>
+          <ul class="list">
+            <li>Java, Python, C, C++, Arduino</li>
+            <li>CAD modeling, lathe, mill, soldering, 3D printing</li>
+            <li>McKelvey Fellowship, Executive Team</li>
+            <li>Engineering Test Kitchen, Project Lead</li>
+            <li>Society of Women Engineers</li>
+          </ul>
+        </div>
       </div>
     </div>
-    <ol class="stages">
-      <li><span class="n">1 / Design</span><span class="ph">[Sketches, CAD, requirements]</span></li>
-      <li><span class="n">2 / Test</span><span class="ph">[What you tested and what you learned]</span></li>
-      <li><span class="n">3 / Prototype</span><span class="ph">[First working version]</span></li>
-      <li><span class="n">4 / Build</span><span class="ph">[Final version and what changed]</span></li>
-    </ol>
-  </article>
-
-  <article class="sheet" id="project-3">
-    <div class="sheet-head"><span>Project 03</span><span><span class="ph">[Month]</span> to <span class="ph">[Month]</span> 2026 / <span class="ph">[Solo or team of N]</span></span></div>
-    <div class="sheet-body">
-      <div>
-        <h3><span class="ph">[Project name]</span></h3>
-        <p><span class="ph">[One sentence: what the device does and who or what it is for.]</span></p>
-        <span class="label">The problem</span>
-        <p><span class="ph">[What needed solving, and the requirement that mattered most.]</span></p>
-        <span class="label">What I did</span>
-        <p><span class="ph">[Your role and the key decisions you made.]</span></p>
-        <span class="label">Result</span>
-        <p><span class="ph">[What it did when tested, with a measured result if possible.]</span></p>
-      </div>
-      <div>
-        <div class="photo">[Photo of finished device<br>or short demo clip]</div>
-        <table class="spec">
-          <tr><th>Controller</th><td><span class="ph">[Arduino model, or none]</span></td></tr>
-          <tr><th>Sensors / actuators</th><td><span class="ph">[List]</span></td></tr>
-          <tr><th>Tools</th><td><span class="ph">[CAD, 3D printer, soldering, etc.]</span></td></tr>
-          <tr><th>Code</th><td><span class="ph">[Link to repo, if public]</span></td></tr>
-        </table>
-      </div>
-    </div>
-    <ol class="stages">
-      <li><span class="n">1 / Design</span><span class="ph">[Sketches, CAD, requirements]</span></li>
-      <li><span class="n">2 / Test</span><span class="ph">[What you tested and what you learned]</span></li>
-      <li><span class="n">3 / Prototype</span><span class="ph">[First working version]</span></li>
-      <li><span class="n">4 / Build</span><span class="ph">[Final version and what changed]</span></li>
-    </ol>
-  </article>
-
-  <div class="sec-head"><h2>Toolbox</h2><p>What I used across all three</p></div>
-  <div class="cols">
-    <div class="box"><h3>Design</h3><ul><li><span class="ph">[CAD software]</span></li><li><span class="ph">[Sketching / schematics]</span></li></ul></div>
-    <div class="box"><h3>Electronics + code</h3><ul><li>Arduino</li><li><span class="ph">[Languages, libraries]</span></li><li><span class="ph">[Soldering, breadboarding]</span></li></ul></div>
-    <div class="box"><h3>Fabrication</h3><ul><li><span class="ph">[3D printing, laser cutting, hand tools]</span></li><li><span class="ph">[Testing equipment]</span></li></ul></div>
-  </div>
-
-  <section class="contact">
-    <h2>Summer 2027</h2>
-    <p>I am looking for an engineering internship in Boston or New York. Send me a note and I will reply with a resume and more detail on any project.</p>
-    <div class="mail">
-      <code id="addr">eleanorspalmer@gmail.com</code>
-      <button class="copy" id="copy" type="button">Copy email</button>
-    </div>
-    <p><span class="ph">[Add your resume link and LinkedIn or GitHub here]</span></p>
   </section>
 
-  <footer>Eleanor Palmer / Engineering portfolio / Updated October 2026</footer>
+  <section class="block" id="contact">
+    <p class="eyebrow">Contact</p>
+    <h2>Let's talk</h2>
+    <p class="sub">I'm looking for an engineering internship in Boston or New York for summer 2027. Email or LinkedIn is the best way to reach me.</p>
+    <dl class="contact-list">
+      <div>
+        <dt>Email</dt>
+        <dd><a id="addr" href="mailto:eleanorspalmer@gmail.com">eleanorspalmer@gmail.com</a></dd>
+        <button class="copy" id="copy" type="button">Copy email</button>
+      </div>
+      <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/eleanor-palmer38" target="_blank" rel="noopener">linkedin.com/in/eleanor-palmer38</a></dd></div>
+      <div><dt>GitHub</dt><dd><span class="ph">[Your GitHub address]</span></dd></div>
+      <div><dt>Based in</dt><dd>The Boston area</dd></div>
+    </dl>
+  </section>
+</main>
+
+<!-- ============ PROJECTS ============ -->
+<main id="view-projects" hidden>
+  <header class="page-head">
+    <p class="eyebrow">Summer 2026 / Motim Industries x Mass General Hospital</p>
+    <h1>Projects</h1>
+    <p>I led the life-cycle development of three manufacturing tools for computed tomography machine components. Each one went from design requirements to a working, documented tool, using SolidWorks and 3D printing.</p>
+    <ol class="steps" aria-label="Process">
+      <li>Design</li><li><span>Test</span></li><li><span>Prototype</span></li><li><span>Build</span></li>
+    </ol>
+  </header>
+
+  <article class="feature">
+    <div class="shot"><span class="ph">[Photo or demo clip of the ceramic wet saw]</span></div>
+    <div>
+      <span class="num">Project 01</span>
+      <h3 class="title">Ceramic wet saw</h3>
+      <p>The first of three manufacturing tools I took from initial design through fabrication and implementation.</p>
+      <ul class="list">
+        <li>Designed the tool in SolidWorks and 3D printed parts for it</li>
+        <li>Documented each prototype iteration, with design requirements and analysis</li>
+        <li>Produced engineering drawings, assembly procedures and a user manual</li>
+      </ul>
+      <p><span class="ph">[Add a result: what it cuts, how precisely, or how the team uses it]</span></p>
+      <ul class="tags"><li>SolidWorks</li><li>3D printing</li><li>Fabrication</li></ul>
+    </div>
+  </article>
+
+  <article class="feature">
+    <div class="shot"><span class="ph">[Photo or demo clip of the otoscope fiducial aligner]</span></div>
+    <div>
+      <span class="num">Project 02</span>
+      <h3 class="title">Otoscope fiducial aligner</h3>
+      <p>A tool for aligning otoscope fiducials, built through the same loop of design, testing and prototyping.</p>
+      <ul class="list">
+        <li>Designed the tool in SolidWorks and 3D printed parts for it</li>
+        <li>Tested each prototype and recorded what changed between versions</li>
+        <li>Wrote specifications, assembly procedures and a user manual for the final design</li>
+      </ul>
+      <p><span class="ph">[Add a result: what it aligns, how precisely, or how the team uses it]</span></p>
+      <ul class="tags"><li>SolidWorks</li><li>3D printing</li><li>Prototyping</li></ul>
+    </div>
+  </article>
+
+  <article class="feature">
+    <div class="shot"><span class="ph">[Photo or demo clip of the fiber optic wire cutter]</span></div>
+    <div>
+      <span class="num">Project 03</span>
+      <h3 class="title">Fiber optic wire cutter</h3>
+      <p>A cutter for fiber optic wire, paired with a calibration interface I wrote myself.</p>
+      <ul class="list">
+        <li>Built a web-based calibration interface in C++ and HTML, hosted on an Arduino R4 WiFi</li>
+        <li>The interface lets the cutter be calibrated precisely and identifies custom cuts</li>
+        <li>Documented the design with engineering drawings and a user manual</li>
+      </ul>
+      <p><span class="ph">[Add a result: cut accuracy, calibration time, or how the team uses it]</span></p>
+      <ul class="tags"><li>Arduino R4 WiFi</li><li>C++</li><li>HTML</li><li>SolidWorks</li></ul>
+    </div>
+  </article>
+
+  <section class="block" style="padding-bottom:0">
+    <p class="eyebrow">Earlier work</p>
+    <h2>More builds</h2>
+    <p class="sub">Smaller projects from before this summer.</p>
+    <div class="earlier">
+      <div class="mini">
+        <span class="num">2023</span>
+        <h3>Morse code decoder and light switch</h3>
+        <p>Arduino devices that decode Morse code sent by laser, and a light switch triggered by a specific clapping sequence.</p>
+        <ul class="tags"><li>Arduino</li><li>C++</li><li>Light and sound sensors</li></ul>
+      </div>
+      <div class="mini">
+        <span class="num">Summer 2023</span>
+        <h3>Portable solar phone charger</h3>
+        <p>At Northeastern University's power electronics lab, I led the technical development of a solar-powered phone charger, from power optimization research to prototyping and field testing.</p>
+        <ul class="tags"><li>Power electronics</li><li>Prototyping</li><li>Field testing</li></ul>
+      </div>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="#contact">Get in touch</a>
+      <a class="btn ghost" href="#top">Back to home</a>
+    </div>
+  </section>
+</main>
+
+<footer style="margin-top:72px">
+  <span>Eleanor Palmer / Mechanical Engineering, Washington University in St. Louis</span>
+  <span>Updated October 2026</span>
+</footer>
 </div>
 
 <script>
 (function () {
+  var home = document.getElementById("view-home");
+  var proj = document.getElementById("view-projects");
+  var links = document.querySelectorAll("nav.bar [data-nav]");
+
+  function route() {
+    var h = (location.hash || "").replace("#", "");
+    var isProj = h === "projects";
+    home.hidden = isProj;
+    proj.hidden = !isProj;
+    var active = isProj ? "projects" : (h === "resume" || h === "contact" ? h : "home");
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].getAttribute("data-nav") === active) links[i].setAttribute("aria-current", "page");
+      else links[i].removeAttribute("aria-current");
+    }
+    if (isProj || !h || h === "top") { window.scrollTo(0, 0); return; }
+    var el = document.getElementById(h);
+    if (el) el.scrollIntoView();
+  }
+  window.addEventListener("hashchange", route);
+  route();
+
   var btn = document.getElementById("copy");
   var addr = document.getElementById("addr");
   btn.addEventListener("click", function () {
@@ -271,3 +410,6 @@ footer { font-family: var(--font-mono); font-size: 12px; color: var(--muted); pa
   });
 })();
 </script>
+
+</body>
+</html>
