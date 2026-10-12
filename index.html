@@ -6,36 +6,35 @@
 <title>Eleanor Palmer Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap">
 <style>
-/* Layout: two views in one file. Home = intro with arched headshot, about, resume, contact. Projects = three project features plus earlier builds. */
+/* Layout: editorial. Stacked uppercase name, square portrait with an offset blush block, sections as label column plus content column separated by heavy rules. Two views: Home and Projects. */
 :root {
   --bg: #ffffff;
   --surface: #ffffff;
-  --tint: #f5f5f6;
-  --tint-2: #f3eff2;
-  --fg: #1d1d21;
-  --muted: #5f5f67;
-  --line: #e7e6e9;
-  --accent: #86596f;
-  --accent-soft: #f1e8ee;
-  --accent-ink: #ffffff;
-  --ph: #8a5a12;
+  --tint: #f7f3f1;
+  --blush: #f4dcd3;
+  --fg: #151517;
+  --muted: #5a5a60;
+  --line: #e3e0de;
+  --rule: rgba(21, 21, 23, 0.2);
+  --accent: #d9917f;
+  --accent-ink: #151517;
+  --ph: #7a5210;
   --ph-bg: #fbf0d8;
-  --nav-bg: rgba(255, 255, 255, 0.92);
-  --font-display: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --nav-bg: rgba(255, 255, 255, 0.94);
+  --font: "Archivo", "Helvetica Neue", Arial, system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #131315; --surface: #1b1b1e; --tint: #202024; --tint-2: #241f24; --fg: #f1f1f3; --muted: #a9a9b2; --line: #2e2e33;
-    --accent: #c99cb5; --accent-soft: #33262f; --accent-ink: #131315; --ph: #e9c27a; --ph-bg: #2e2612; --nav-bg: rgba(19, 19, 21, 0.92);
+    --bg: #121212; --surface: #1a1918; --tint: #1c1a19; --blush: #3a2822; --fg: #f3f1f0; --muted: #aaa6a4; --line: #2e2b2a; --rule: rgba(255, 255, 255, 0.22);
+    --accent: #e3a393; --accent-ink: #151517; --ph: #e9c27a; --ph-bg: #2e2612; --nav-bg: rgba(18, 18, 18, 0.94);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #131315; --surface: #1b1b1e; --tint: #202024; --tint-2: #241f24; --fg: #f1f1f3; --muted: #a9a9b2; --line: #2e2e33;
-  --accent: #c99cb5; --accent-soft: #33262f; --accent-ink: #131315; --ph: #e9c27a; --ph-bg: #2e2612; --nav-bg: rgba(19, 19, 21, 0.92);
+  --bg: #121212; --surface: #1a1918; --tint: #1c1a19; --blush: #3a2822; --fg: #f3f1f0; --muted: #aaa6a4; --line: #2e2b2a; --rule: rgba(255, 255, 255, 0.22);
+  --accent: #e3a393; --accent-ink: #151517; --ph: #e9c27a; --ph-bg: #2e2612; --nav-bg: rgba(18, 18, 18, 0.94);
   color-scheme: dark;
 }
 
@@ -45,120 +44,122 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--fg);
-  font-family: var(--font-body);
+  font-family: var(--font);
   font-size: 17px;
-  line-height: 1.7;
+  line-height: 1.65;
   padding-inline: 20px;
   padding-block: 0 48px;
 }
-.wrap { max-width: 1040px; margin-inline: auto; }
-a { color: var(--accent); }
-:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-section, [id] { scroll-margin-top: 76px; }
+.wrap { max-width: 1120px; margin-inline: auto; }
+a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 3px; text-underline-offset: 4px; }
+a:hover { text-decoration-thickness: 5px; }
+:focus-visible { outline: 3px solid var(--fg); outline-offset: 3px; }
+[id] { scroll-margin-top: 76px; }
 
 nav.bar {
   position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
   background: var(--nav-bg); backdrop-filter: blur(8px);
   margin-inline: -20px; padding-inline: 20px; border-bottom: 1px solid var(--line);
 }
-nav.bar .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 4px 20px; padding-block: 12px; }
-.brand { font-family: var(--font-display); font-weight: 700; font-size: 19px; line-height: 1.1; color: var(--fg); text-decoration: none; letter-spacing: -0.01em; }
-nav.bar ul { display: flex; flex-wrap: wrap; gap: 2px 24px; list-style: none; margin: 0; padding: 0; }
-nav.bar ul a { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; padding-block: 6px; border-bottom: 2px solid transparent; }
-nav.bar ul a:hover { color: var(--accent); }
-nav.bar ul a[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
+nav.bar .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 4px 20px; padding-block: 14px; }
+.brand { font-weight: 800; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; }
+.brand:hover { text-decoration: none; }
+nav.bar ul { display: flex; flex-wrap: wrap; gap: 2px 26px; list-style: none; margin: 0; padding: 0; }
+nav.bar ul a { font-size: 15px; font-weight: 600; text-decoration: none; padding-block: 4px; }
+nav.bar ul a:hover { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 3px; text-underline-offset: 6px; }
+nav.bar ul a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 3px; text-underline-offset: 6px; }
 
-.eyebrow { font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+.label { font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
 
 /* Home hero */
-.hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px 64px; align-items: center; padding-block: 72px 80px; }
-@media (max-width: 800px) { .hero { grid-template-columns: minmax(0, 1fr); padding-block: 48px 56px; } .portrait { order: -1; } }
-h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(40px, 7vw, 68px); line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 20px; text-wrap: balance; }
-h1 em { font-style: normal; color: var(--accent); }
-.tagline { font-family: var(--font-display); font-weight: 500; font-size: clamp(19px, 2.6vw, 23px); line-height: 1.35; margin: 0 0 14px; max-width: 30ch; }
-.lede { color: var(--muted); max-width: 52ch; margin: 0 0 30px; }
-.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 26px; }
-.btn { display: inline-block; font-weight: 500; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 26px; border-radius: 999px; text-decoration: none; border: 1.5px solid var(--accent); cursor: pointer; font-family: var(--font-body); }
-.btn.primary { background: var(--accent); color: var(--accent-ink); }
-.btn.ghost { background: transparent; color: var(--accent); }
-.btn:hover { filter: brightness(1.07); }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
-.chips li { font-size: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; color: var(--muted); }
+.hero { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 48px 72px; align-items: center; padding-block: 64px 80px; }
+@media (max-width: 800px) { .hero { grid-template-columns: minmax(0, 1fr); padding-block: 40px 56px; } }
+h1 { font-weight: 800; font-size: clamp(44px, 10.5vw, 112px); line-height: 0.92; letter-spacing: -0.035em; text-transform: uppercase; margin: 0 0 22px; overflow-wrap: anywhere; }
+.role { font-size: 14px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 28px; }
+.lede { color: var(--muted); max-width: 50ch; margin: 0 0 30px; font-size: 18px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
+.btn { display: inline-block; font-family: var(--font); font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; padding: 15px 26px; text-decoration: none; border: 2px solid var(--fg); color: var(--fg); background: transparent; cursor: pointer; border-radius: 0; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn:hover { text-decoration: none; background: var(--fg); border-color: var(--fg); color: var(--bg); }
+.where { font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0; }
 
-.portrait { display: grid; place-items: center; padding: 14px; }
-.frame { position: relative; width: min(340px, 100%); aspect-ratio: 4 / 5; border-radius: 999px 999px 28px 28px; background: linear-gradient(180deg, var(--accent-soft), var(--tint-2)); display: grid; place-content: center; text-align: center; gap: 4px; color: var(--muted); }
-.frame::after { content: ""; position: absolute; inset: -14px; border: 1.5px solid var(--accent); border-radius: 999px 999px 40px 40px; opacity: 0.45; pointer-events: none; }
-.frame .initials { font-family: var(--font-display); font-size: 64px; font-weight: 600; line-height: 1; color: var(--accent); }
-.frame small { font-size: 13px; letter-spacing: 0.06em; }
-.frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+.portrait { padding: 0 16px 16px 0; }
+.frame { position: relative; width: min(400px, 100%); aspect-ratio: 4 / 5; background: var(--tint); display: grid; place-content: center; text-align: center; gap: 6px; color: var(--muted); margin-inline: auto 0; }
+@media (max-width: 800px) { .frame { margin-inline: 0; width: min(340px, 100%); } }
+.frame::before { content: ""; position: absolute; inset: 16px -16px -16px 16px; background: var(--accent); z-index: -1; }
+.portrait { position: relative; z-index: 0; isolation: isolate; }
+.frame .initials { font-size: 72px; font-weight: 800; line-height: 1; letter-spacing: -0.04em; color: var(--fg); }
+.frame small { font-size: 13px; letter-spacing: 0.04em; }
+.frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
-/* Blocks */
-.block { padding-block: 72px; border-top: 1px solid var(--line); }
-h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(28px, 4.2vw, 38px); line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 10px; }
-.sub { color: var(--muted); margin: 0 0 36px; max-width: 58ch; }
+/* Sections */
+.block { display: grid; grid-template-columns: minmax(0, 0.75fr) minmax(0, 2.25fr); gap: 20px 56px; padding-block: 64px; border-top: 2px solid var(--fg); }
+@media (max-width: 800px) { .block { grid-template-columns: minmax(0, 1fr); padding-block: 48px; } }
+h2 { font-weight: 800; font-size: clamp(26px, 3.6vw, 34px); line-height: 1.05; letter-spacing: -0.02em; text-transform: uppercase; margin: 0 0 10px; }
+.sub { color: var(--muted); margin: 0; font-size: 16px; max-width: 30ch; }
+.content { min-width: 0; }
+.content p { margin: 0 0 16px; max-width: 64ch; }
 
-.about { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px 56px; align-items: start; }
-@media (max-width: 800px) { .about { grid-template-columns: minmax(0, 1fr); } }
-.about p { margin: 0 0 16px; max-width: 62ch; }
-.facts { margin: 0; padding: 24px; background: var(--tint); border-radius: 20px; display: grid; gap: 16px; }
-.facts div { min-width: 0; }
-.facts dt { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin: 0 0 2px; }
+.facts { margin: 28px 0 0; border-top: 1px solid var(--rule); }
+.facts div { display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 4px 20px; padding-block: 12px; border-bottom: 1px solid var(--rule); }
+@media (max-width: 560px) { .facts div { grid-template-columns: minmax(0, 1fr); } }
+.facts dt { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--muted); padding-top: 3px; }
 .facts dd { margin: 0; }
 
-.resume { background: var(--tint); border-radius: 24px; padding: 40px 36px; display: grid; gap: 36px; }
-@media (max-width: 800px) { .resume { padding: 28px 22px; } }
+.resume { background: var(--blush); padding: 36px 32px; display: grid; gap: 32px; }
+@media (max-width: 800px) { .resume { padding: 26px 20px; } }
 .resume-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; }
-.resume-top p { margin: 0; color: var(--muted); max-width: 48ch; }
-.resume-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px 48px; }
-.resume h3 { font-family: var(--font-display); font-weight: 700; font-size: 20px; line-height: 1.2; letter-spacing: -0.01em; margin: 0 0 14px; }
-.job { display: grid; gap: 0; padding-block: 12px; border-top: 1px solid var(--line); min-width: 0; }
-.job:first-of-type { border-top: 0; padding-top: 0; }
-.job b { font-weight: 600; }
-.job span { color: var(--muted); font-size: 15px; }
-.job .when { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
-.list { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
-.list li { padding-left: 16px; position: relative; }
-.list li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.resume-top p { margin: 0; max-width: 40ch; }
+.resume .btn:hover { background: var(--fg); }
+.resume .btn.primary { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+.resume .btn.primary:hover { background: transparent; color: var(--fg); }
+.resume-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px 48px; }
+.resume h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 8px; padding-bottom: 8px; border-bottom: 2px solid var(--fg); }
+.job { display: grid; gap: 0; padding-block: 12px; border-bottom: 1px solid var(--rule); min-width: 0; }
+.job b { font-weight: 700; }
+.job span { font-size: 15px; }
+.job .when { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--muted); }
+.list { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.list li { padding-left: 20px; position: relative; }
+.list li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 10px; height: 3px; background: var(--accent); }
+.resume .list { padding-top: 12px; }
 
-.contact-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 0; }
-.contact-list > div { border: 1px solid var(--line); border-radius: 18px; padding: 20px 22px; background: var(--surface); min-width: 0; }
-.contact-list dt { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin: 0 0 6px; }
-.contact-list dd { margin: 0; overflow-wrap: anywhere; }
-.copy { margin-top: 10px; font-family: var(--font-body); font-weight: 500; font-size: 13px; letter-spacing: 0.06em; background: var(--accent-soft); color: var(--accent); border: 0; padding: 6px 14px; border-radius: 999px; cursor: pointer; }
-.copy:hover { filter: brightness(0.97); }
+.mail { display: block; font-weight: 800; font-size: clamp(22px, 4.2vw, 36px); letter-spacing: -0.02em; line-height: 1.2; overflow-wrap: anywhere; margin-bottom: 14px; }
+.copy { font-family: var(--font); font-weight: 700; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; background: transparent; color: var(--fg); border: 2px solid var(--fg); padding: 8px 16px; cursor: pointer; border-radius: 0; }
+.copy:hover { background: var(--fg); color: var(--bg); }
+.contact-rows { margin: 32px 0 0; border-top: 1px solid var(--rule); }
+.contact-rows div { display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 4px 20px; padding-block: 12px; border-bottom: 1px solid var(--rule); }
+@media (max-width: 560px) { .contact-rows div { grid-template-columns: minmax(0, 1fr); } }
+.contact-rows dt { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--muted); padding-top: 3px; }
+.contact-rows dd { margin: 0; overflow-wrap: anywhere; }
 
 /* Projects view */
-.page-head { padding-block: 64px 40px; }
-.page-head h1 { font-size: clamp(36px, 6vw, 52px); margin-bottom: 14px; }
-.page-head p { max-width: 62ch; color: var(--muted); margin: 0 0 22px; }
-.steps { display: flex; flex-wrap: wrap; gap: 8px 10px; list-style: none; margin: 0; padding: 0; align-items: center; }
-.steps li { font-size: 14px; font-weight: 500; letter-spacing: 0.04em; background: var(--tint); color: var(--fg); padding: 4px 16px; border-radius: 999px; }
-.steps li + li::before { content: "\2192"; margin-right: 10px; color: var(--muted); }
-.steps li + li { background: transparent; padding-left: 0; }
-.steps li + li span { background: var(--tint); padding: 4px 16px; border-radius: 999px; }
+.page-head { padding-block: 56px 48px; }
+.page-head h1 { font-size: clamp(44px, 10vw, 104px); margin-bottom: 18px; }
+.page-head p.intro { max-width: 60ch; color: var(--muted); margin: 0 0 22px; font-size: 18px; }
+.steps { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin: 0; }
 
-.feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 28px 48px; align-items: start; padding-block: 48px; border-top: 1px solid var(--line); }
-.feature:nth-of-type(even) .shot { order: 2; }
-@media (max-width: 800px) { .feature { grid-template-columns: minmax(0, 1fr); } .feature:nth-of-type(even) .shot { order: 0; } }
-.shot { aspect-ratio: 4 / 3; max-width: 100%; border-radius: 22px; background: linear-gradient(160deg, var(--accent-soft), var(--tint-2)); display: grid; place-items: center; text-align: center; padding: 20px; color: var(--muted); font-size: 14px; }
-.num { font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
-h3.title { font-family: var(--font-display); font-weight: 700; font-size: clamp(24px, 3.4vw, 30px); line-height: 1.15; letter-spacing: -0.02em; margin: 6px 0 12px; }
-.feature p { margin: 0 0 14px; color: var(--muted); max-width: 58ch; }
+.feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px 56px; align-items: start; padding-block: 48px; border-top: 2px solid var(--fg); }
+@media (max-width: 800px) { .feature { grid-template-columns: minmax(0, 1fr); padding-block: 36px; } }
+.shot { aspect-ratio: 4 / 3; max-width: 100%; background: var(--blush); display: grid; place-items: center; text-align: center; padding: 20px; color: var(--muted); font-size: 14px; }
+.num { font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; display: inline-block; padding-bottom: 4px; border-bottom: 3px solid var(--accent); }
+h3.title { font-weight: 800; font-size: clamp(26px, 3.6vw, 36px); line-height: 1.08; letter-spacing: -0.025em; text-transform: uppercase; margin: 16px 0 14px; }
+.feature p { margin: 0 0 14px; color: var(--muted); max-width: 56ch; }
 .feature .list { margin-bottom: 18px; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
-.tags li { font-size: 14px; background: var(--tint); color: var(--muted); padding: 3px 14px; border-radius: 999px; }
+.tags li { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border: 1.5px solid var(--fg); padding: 3px 10px; }
 
-.earlier { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-.mini { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px; min-width: 0; }
-.mini h3 { font-family: var(--font-display); font-weight: 700; font-size: 20px; line-height: 1.25; letter-spacing: -0.01em; margin: 4px 0 8px; }
+.earlier { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.mini { border-top: 2px solid var(--fg); padding-top: 18px; min-width: 0; }
+.mini h3 { font-weight: 800; font-size: 20px; line-height: 1.2; letter-spacing: -0.015em; text-transform: uppercase; margin: 14px 0 8px; }
 .mini p { margin: 0 0 12px; color: var(--muted); }
 
-.ph { color: var(--ph); background: var(--ph-bg); padding: 0 6px; border-radius: 4px; font-size: 0.92em; }
+.ph { color: var(--ph); background: var(--ph-bg); padding: 0 6px; font-size: 0.92em; }
 .shot .ph, .frame .ph { background: transparent; padding: 0; }
 
-.cta { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; }
+.cta { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px; }
 
-footer { border-top: 1px solid var(--line); padding-top: 24px; font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+footer { border-top: 2px solid var(--fg); padding-top: 20px; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
 </style>
 </head>
 <body>
@@ -167,10 +168,10 @@ footer { border-top: 1px solid var(--line); padding-top: 24px; font-size: 14px; 
   <div class="wrap">
     <a class="brand" href="#top">Eleanor Palmer</a>
     <ul>
-      <li><a href="#top" data-nav="home" aria-current="page">Home</a></li>
-      <li><a href="#projects" data-nav="projects">Projects</a></li>
-      <li><a href="#resume" data-nav="resume">Resume</a></li>
-      <li><a href="#contact" data-nav="contact">Contact</a></li>
+      <li><a href="#top" data-nav="home" aria-current="page">Home.</a></li>
+      <li><a href="#projects" data-nav="projects">Projects.</a></li>
+      <li><a href="#resume" data-nav="resume">Resume.</a></li>
+      <li><a href="#contact" data-nav="contact">Contact.</a></li>
     </ul>
   </div>
 </nav>
@@ -181,19 +182,15 @@ footer { border-top: 1px solid var(--line); padding-top: 24px; font-size: 14px; 
 <main id="view-home">
   <header class="hero" id="top">
     <div>
-      <p class="eyebrow">Mechanical engineering / Summer 2027 internships</p>
-      <h1>Hello, I'm <em>Eleanor.</em></h1>
-      <p class="tagline">I design, test and build things that work.</p>
-      <p class="lede">I'm a mechanical engineering student who likes taking an idea all the way from sketch to a working device, with the CAD, the hardware and the code to match.</p>
+      <h1>Eleanor<br>Palmer.</h1>
+      <p class="role">Mechanical engineering // Washington University in St. Louis</p>
+      <p class="lede">I design, test and build things that work. Last summer I took three physical devices from sketch to working hardware, with the CAD, the fabrication and the code to match.</p>
       <div class="actions">
-        <a class="btn primary" href="#projects">View my projects</a>
-        <a class="btn ghost" href="#resume">Resume</a>
-        <a class="btn ghost" href="https://www.linkedin.com/in/eleanor-palmer38" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn primary" href="#projects">View projects</a>
+        <a class="btn" href="#resume">Resume</a>
+        <a class="btn" href="https://www.linkedin.com/in/eleanor-palmer38" target="_blank" rel="noopener">LinkedIn</a>
       </div>
-      <ul class="chips">
-        <li>Washington University in St. Louis</li>
-        <li>Boston or New York</li>
-      </ul>
+      <p class="where">Seeking summer 2027 // Boston or New York</p>
     </div>
     <div class="portrait">
       <div class="frame">
@@ -205,16 +202,15 @@ footer { border-top: 1px solid var(--line); padding-top: 24px; font-size: 14px; 
   </header>
 
   <section class="block" id="about">
-    <p class="eyebrow">About</p>
-    <h2>A little about me</h2>
-    <p class="sub">The short version.</p>
-    <div class="about">
-      <div>
-        <p>I'm studying mechanical engineering at Washington University in St. Louis, with a minor in computer science. I like work where I can sketch an idea, model it in CAD, build it in the shop and write the code that runs it.</p>
-        <p>This past summer I worked with Motim Industries and Mass General Hospital, where I designed and built three manufacturing tools for computed tomography machine components, from first design through fabrication and documentation.</p>
-        <p>I'm looking for an engineering internship for summer 2027 in Boston or New York. Outside of class I sail, surf, hike, ski and cook, and I'm into fashion and creative design.</p>
-        <p><span class="ph">[Edit this bio so it sounds like you. I wrote it from your resume.]</span></p>
-      </div>
+    <div>
+      <h2>About.</h2>
+      <p class="sub">The short version.</p>
+    </div>
+    <div class="content">
+      <p>I'm studying mechanical engineering at Washington University in St. Louis, with a minor in computer science. I like work where I can sketch an idea, model it in CAD, build it in the shop and write the code that runs it.</p>
+      <p>This past summer I worked with Motim Industries and Mass General Hospital, where I designed and built three manufacturing tools for computed tomography machine components, from first design through fabrication and documentation.</p>
+      <p>I'm looking for an engineering internship for summer 2027 in Boston or New York. Outside of class I sail, surf, hike, ski and cook, and I'm into fashion and creative design.</p>
+      <p><span class="ph">[Edit this bio so it sounds like you. I wrote it from your resume.]</span></p>
       <dl class="facts">
         <div><dt>Studying</dt><dd>B.S. Mechanical Engineering, minor in Computer Science. Expected May 2028.</dd></div>
         <div><dt>Looking for</dt><dd>Engineering internship, summer 2027</dd></div>
@@ -225,70 +221,72 @@ footer { border-top: 1px solid var(--line); padding-top: 24px; font-size: 14px; 
   </section>
 
   <section class="block" id="resume">
-    <p class="eyebrow">Resume</p>
-    <h2>Education and experience</h2>
-    <p class="sub">A quick look. The full one-page version is a PDF.</p>
-    <div class="resume">
-      <div class="resume-top">
-        <p>Download my resume to see the full details of each role.</p>
-        <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">View resume (PDF)</a>
-      </div>
-      <div class="resume-grid">
-        <div>
-          <h3>Experience</h3>
-          <div class="job"><span class="when">May to Aug 2026</span><b>Mechanical Engineer &amp; Product Developer</b><span>Motim Industries x Mass General Hospital, Newport, RI</span></div>
-          <div class="job"><span class="when">May to Aug 2025</span><b>Manufacturing Assistant</b><span>Refleece, Fall River, MA</span></div>
-          <div class="job"><span class="when">Aug 2023 to Jun 2024</span><b>Software Engineering Co-op</b><span>Audible, Cambridge, MA</span></div>
-          <div class="job"><span class="when">Jun to Aug 2023</span><b>Research Assistant</b><span>Northeastern University, power electronics lab, Boston, MA</span></div>
+    <div>
+      <h2>Resume.</h2>
+      <p class="sub">A quick look. The full version is a PDF.</p>
+    </div>
+    <div class="content">
+      <div class="resume">
+        <div class="resume-top">
+          <p>Download my resume to see the full details of each role.</p>
+          <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">View resume (PDF)</a>
         </div>
-        <div>
-          <h3>Education</h3>
-          <div class="job"><span class="when">Expected May 2028</span><b>Washington University in St. Louis</b><span>McKelvey School of Engineering. B.S. Mechanical Engineering, minor in Computer Science.</span></div>
-          <h3 style="margin-top:28px">Skills and involvement</h3>
-          <ul class="list">
-            <li>Java, Python, C, C++, Arduino</li>
-            <li>CAD modeling, lathe, mill, soldering, 3D printing</li>
-            <li>McKelvey Fellowship, Executive Team</li>
-            <li>Engineering Test Kitchen, Project Lead</li>
-            <li>Society of Women Engineers</li>
-          </ul>
+        <div class="resume-grid">
+          <div>
+            <h3>Experience</h3>
+            <div class="job"><span class="when">May to Aug 2026</span><b>Mechanical Engineer &amp; Product Developer</b><span>Motim Industries x Mass General Hospital, Newport, RI</span></div>
+            <div class="job"><span class="when">May to Aug 2025</span><b>Manufacturing Assistant</b><span>Refleece, Fall River, MA</span></div>
+            <div class="job"><span class="when">Aug 2023 to Jun 2024</span><b>Software Engineering Co-op</b><span>Audible, Cambridge, MA</span></div>
+            <div class="job"><span class="when">Jun to Aug 2023</span><b>Research Assistant</b><span>Northeastern University, power electronics lab, Boston, MA</span></div>
+          </div>
+          <div>
+            <h3>Education</h3>
+            <div class="job"><span class="when">Expected May 2028</span><b>Washington University in St. Louis</b><span>McKelvey School of Engineering. B.S. Mechanical Engineering, minor in Computer Science.</span></div>
+            <h3 style="margin-top:28px">Skills and involvement</h3>
+            <ul class="list">
+              <li>Java, Python, C, C++, Arduino</li>
+              <li>CAD modeling, lathe, mill, soldering, 3D printing</li>
+              <li>McKelvey Fellowship, Executive Team</li>
+              <li>Engineering Test Kitchen, Project Lead</li>
+              <li>Society of Women Engineers</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <section class="block" id="contact">
-    <p class="eyebrow">Contact</p>
-    <h2>Let's talk</h2>
-    <p class="sub">I'm looking for an engineering internship in Boston or New York for summer 2027. Email or LinkedIn is the best way to reach me.</p>
-    <dl class="contact-list">
-      <div>
-        <dt>Email</dt>
-        <dd><a id="addr" href="mailto:eleanorspalmer@gmail.com">eleanorspalmer@gmail.com</a></dd>
-        <button class="copy" id="copy" type="button">Copy email</button>
-      </div>
-      <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/eleanor-palmer38" target="_blank" rel="noopener">linkedin.com/in/eleanor-palmer38</a></dd></div>
-      <div><dt>GitHub</dt><dd><span class="ph">[Your GitHub address]</span></dd></div>
-      <div><dt>Based in</dt><dd>The Boston area</dd></div>
-    </dl>
+    <div>
+      <h2>Contact.</h2>
+      <p class="sub">Email or LinkedIn is the best way to reach me.</p>
+    </div>
+    <div class="content">
+      <a class="mail" id="addr" href="mailto:eleanorspalmer@gmail.com">eleanorspalmer@gmail.com</a>
+      <button class="copy" id="copy" type="button">Copy email</button>
+      <dl class="contact-rows">
+        <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/eleanor-palmer38" target="_blank" rel="noopener">linkedin.com/in/eleanor-palmer38</a></dd></div>
+        <div><dt>GitHub</dt><dd><span class="ph">[Your GitHub address]</span></dd></div>
+        <div><dt>Based in</dt><dd>The Boston area</dd></div>
+        <div><dt>Looking for</dt><dd>Engineering internship, summer 2027, in Boston or New York</dd></div>
+      </dl>
+    </div>
   </section>
 </main>
 
 <!-- ============ PROJECTS ============ -->
 <main id="view-projects" hidden>
   <header class="page-head">
-    <p class="eyebrow">Summer 2026 / Motim Industries x Mass General Hospital</p>
-    <h1>Projects</h1>
-    <p>I led the life-cycle development of three manufacturing tools for computed tomography machine components. Each one went from design requirements to a working, documented tool, using SolidWorks and 3D printing.</p>
-    <ol class="steps" aria-label="Process">
-      <li>Design</li><li><span>Test</span></li><li><span>Prototype</span></li><li><span>Build</span></li>
-    </ol>
+    <p class="label">Summer 2026 // Motim Industries x Mass General Hospital</p>
+    <h1>Projects.</h1>
+    <p class="intro">I led the life-cycle development of three manufacturing tools for computed tomography machine components. Each one went from design requirements to a working, documented tool, using SolidWorks and 3D printing.</p>
+    <p class="steps">Design // Test // Prototype // Build</p>
   </header>
 
   <article class="feature">
     <div class="shot"><span class="ph">[Photo or demo clip of the ceramic wet saw]</span></div>
     <div>
-      <span class="num">Project 01</span>
+      <span class="num">01</span>
       <h3 class="title">Ceramic wet saw</h3>
       <p>The first of three manufacturing tools I took from initial design through fabrication and implementation.</p>
       <ul class="list">
@@ -304,7 +302,7 @@ footer { border-top: 1px solid var(--line); padding-top: 24px; font-size: 14px; 
   <article class="feature">
     <div class="shot"><span class="ph">[Photo or demo clip of the otoscope fiducial aligner]</span></div>
     <div>
-      <span class="num">Project 02</span>
+      <span class="num">02</span>
       <h3 class="title">Otoscope fiducial aligner</h3>
       <p>A tool for aligning otoscope fiducials, built through the same loop of design, testing and prototyping.</p>
       <ul class="list">
@@ -320,7 +318,7 @@ footer { border-top: 1px solid var(--line); padding-top: 24px; font-size: 14px; 
   <article class="feature">
     <div class="shot"><span class="ph">[Photo or demo clip of the fiber optic wire cutter]</span></div>
     <div>
-      <span class="num">Project 03</span>
+      <span class="num">03</span>
       <h3 class="title">Fiber optic wire cutter</h3>
       <p>A cutter for fiber optic wire, paired with a calibration interface I wrote myself.</p>
       <ul class="list">
@@ -333,10 +331,11 @@ footer { border-top: 1px solid var(--line); padding-top: 24px; font-size: 14px; 
     </div>
   </article>
 
-  <section class="block" style="padding-bottom:0">
-    <p class="eyebrow">Earlier work</p>
-    <h2>More builds</h2>
-    <p class="sub">Smaller projects from before this summer.</p>
+  <section class="block" style="grid-template-columns:minmax(0,1fr)">
+    <div>
+      <h2>More builds.</h2>
+      <p class="sub" style="max-width:none">Smaller projects from before this summer.</p>
+    </div>
     <div class="earlier">
       <div class="mini">
         <span class="num">2023</span>
@@ -353,13 +352,13 @@ footer { border-top: 1px solid var(--line); padding-top: 24px; font-size: 14px; 
     </div>
     <div class="cta">
       <a class="btn primary" href="#contact">Get in touch</a>
-      <a class="btn ghost" href="#top">Back to home</a>
+      <a class="btn" href="#top">Back to home</a>
     </div>
   </section>
 </main>
 
 <footer style="margin-top:72px">
-  <span>Eleanor Palmer / Mechanical Engineering, Washington University in St. Louis</span>
+  <span>Eleanor Palmer // Mechanical Engineering, WashU</span>
   <span>Updated October 2026</span>
 </footer>
 </div>
