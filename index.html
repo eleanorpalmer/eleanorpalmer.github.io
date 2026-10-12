@@ -1,0 +1,273 @@
+<title>Eleanor Palmer Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: lab-notebook page. Narrow header, three project sheets each with a design>test>prototype>build strip and a spec table. */
+:root {
+  --bg: #eef1ee;
+  --surface: #f9faf8;
+  --fg: #172326;
+  --muted: #566468;
+  --line: #c9d1cd;
+  --accent: #d9501b;
+  --accent-ink: #ffffff;
+  --ph: #8a5a12;
+  --ph-bg: #f6ead2;
+  --grid: rgba(23, 35, 38, 0.05);
+  --font-display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101719; --surface: #172124; --fg: #e8eeeb; --muted: #94a3a6; --line: #2c3a3e;
+    --accent: #ff7a45; --accent-ink: #101719; --ph: #e9c27a; --ph-bg: #2b2412; --grid: rgba(232, 238, 235, 0.045);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101719; --surface: #172124; --fg: #e8eeeb; --muted: #94a3a6; --line: #2c3a3e;
+  --accent: #ff7a45; --accent-ink: #101719; --ph: #e9c27a; --ph-bg: #2b2412; --grid: rgba(232, 238, 235, 0.045);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-inline: 20px;
+  padding-block: 0 64px;
+}
+.wrap { max-width: 980px; margin-inline: auto; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+.draftbar {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em;
+  background: var(--ph-bg); color: var(--ph);
+  margin-inline: -20px; padding: 8px 20px; text-align: center;
+}
+
+header.top { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: baseline; padding-block: 28px 0; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+header.top b { color: var(--fg); font-weight: 500; }
+
+.hero { padding-block: 56px 48px; border-bottom: 2px solid var(--fg); }
+.eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px; }
+h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(56px, 12vw, 120px); line-height: 0.92; letter-spacing: 0.005em; text-transform: uppercase; margin: 0 0 24px; text-wrap: balance; }
+.lede { max-width: 60ch; font-size: 19px; margin: 0 0 28px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.facts li { font-family: var(--font-mono); font-size: 13px; border: 1px solid var(--fg); padding: 5px 10px; }
+
+.sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; padding-block: 56px 20px; }
+h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(32px, 6vw, 48px); text-transform: uppercase; line-height: 1; margin: 0; letter-spacing: 0.01em; }
+.sec-head p { margin: 0; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+
+.sheet { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--fg); margin-bottom: 28px; }
+.sheet-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; padding: 20px 24px 0; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.sheet-body { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 28px 40px; padding: 12px 24px 28px; }
+@media (max-width: 760px) { .sheet-body { grid-template-columns: minmax(0, 1fr); } }
+h3 { font-family: var(--font-display); font-weight: 700; font-size: 34px; line-height: 1.05; text-transform: uppercase; margin: 0 0 12px; text-wrap: balance; }
+.sheet p { margin: 0 0 14px; max-width: 62ch; }
+.label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 18px 0 6px; display: block; }
+
+.ph { color: var(--ph); background: var(--ph-bg); padding: 1px 6px; font-family: var(--font-mono); font-size: 0.86em; }
+
+.photo { aspect-ratio: 4 / 3; max-width: 100%; border: 1.5px dashed var(--line); display: grid; place-items: center; text-align: center; padding: 16px; color: var(--muted); font-family: var(--font-mono); font-size: 12px; background: repeating-linear-gradient(135deg, transparent 0 10px, var(--grid) 10px 11px); }
+
+.spec { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 14px; }
+.spec th, .spec td { text-align: left; padding: 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.spec th { font-family: var(--font-mono); font-weight: 400; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); width: 40%; padding-right: 12px; }
+
+.stages { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+@media (max-width: 760px) { .stages { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.stages li { padding: 14px 24px 18px 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 14px; }
+.stages li:last-child { border-right: 0; }
+@media (max-width: 760px) { .stages li:nth-child(2n) { border-right: 0; } }
+.stages .n { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 4px; font-weight: 500; }
+.stages strong { display: block; font-weight: 600; margin-bottom: 4px; }
+
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.box { background: var(--surface); border: 1px solid var(--line); padding: 20px 22px; min-width: 0; }
+.box h3 { font-size: 24px; margin-bottom: 10px; }
+.box ul { margin: 0; padding-left: 18px; }
+.box li { margin-bottom: 4px; }
+
+.contact { margin-top: 56px; background: var(--fg); color: var(--bg); padding: 32px 28px; display: grid; gap: 14px; }
+.contact h2 { color: var(--bg); }
+.contact p { margin: 0; max-width: 56ch; }
+.mail { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.mail code { font-family: var(--font-mono); font-size: 16px; user-select: all; overflow-wrap: anywhere; }
+button.copy { font-family: var(--font-mono); font-size: 13px; background: var(--accent); color: var(--accent-ink); border: 0; padding: 8px 14px; cursor: pointer; }
+button.copy:hover { filter: brightness(1.08); }
+.contact .ph { background: transparent; color: var(--accent); padding: 0; }
+footer { font-family: var(--font-mono); font-size: 12px; color: var(--muted); padding-top: 24px; }
+</style>
+
+<div class="draftbar">DRAFT. Text highlighted like <span class="ph">[this]</span> is a placeholder. Replace it with your real details.</div>
+
+<div class="wrap">
+  <header class="top">
+    <span><b>Eleanor Palmer</b> / Engineering portfolio</span>
+    <span>Looking for: Summer 2027 internship / Boston or New York</span>
+  </header>
+
+  <section class="hero">
+    <p class="eyebrow">Design. Test. Prototype. Build.</p>
+    <h1>Physical devices, built by hand</h1>
+    <p class="lede">Last summer I took three projects from first sketch to working hardware. Each one went through the full loop: design it, test the idea, prototype it, then build the real thing. Some run on <span class="ph">[Arduino boards]</span> and code I wrote myself.</p>
+    <ul class="facts">
+      <li>3 projects</li>
+      <li>Summer 2026</li>
+      <li>Hardware + firmware</li>
+      <li><span class="ph">[Your school, major, grad year]</span></li>
+    </ul>
+  </section>
+
+  <div class="sec-head"><h2>Projects</h2><p>Summer 2026 / three builds</p></div>
+
+  <article class="sheet" id="project-1">
+    <div class="sheet-head"><span>Project 01</span><span><span class="ph">[Month]</span> to <span class="ph">[Month]</span> 2026 / <span class="ph">[Solo or team of N]</span></span></div>
+    <div class="sheet-body">
+      <div>
+        <h3><span class="ph">[Project name]</span></h3>
+        <p><span class="ph">[One sentence: what the device does and who or what it is for.]</span></p>
+        <span class="label">The problem</span>
+        <p><span class="ph">[What needed solving, and the requirement that mattered most. Include a number if you have one, such as a target weight, range, or time.]</span></p>
+        <span class="label">What I did</span>
+        <p><span class="ph">[Your role and the key decisions you made. Say what you designed, what you coded, and what you machined or assembled.]</span></p>
+        <span class="label">Result</span>
+        <p><span class="ph">[What it did when tested, with a measured result if possible.]</span></p>
+      </div>
+      <div>
+        <div class="photo">[Photo of finished device<br>or short demo clip]</div>
+        <table class="spec">
+          <tr><th>Controller</th><td><span class="ph">[Arduino model, or none]</span></td></tr>
+          <tr><th>Sensors / actuators</th><td><span class="ph">[List]</span></td></tr>
+          <tr><th>Tools</th><td><span class="ph">[CAD, 3D printer, soldering, etc.]</span></td></tr>
+          <tr><th>Code</th><td><span class="ph">[Link to repo, if public]</span></td></tr>
+        </table>
+      </div>
+    </div>
+    <ol class="stages">
+      <li><span class="n">1 / Design</span><span class="ph">[Sketches, CAD, requirements]</span></li>
+      <li><span class="n">2 / Test</span><span class="ph">[What you tested and what you learned]</span></li>
+      <li><span class="n">3 / Prototype</span><span class="ph">[First working version]</span></li>
+      <li><span class="n">4 / Build</span><span class="ph">[Final version and what changed]</span></li>
+    </ol>
+  </article>
+
+  <article class="sheet" id="project-2">
+    <div class="sheet-head"><span>Project 02</span><span><span class="ph">[Month]</span> to <span class="ph">[Month]</span> 2026 / <span class="ph">[Solo or team of N]</span></span></div>
+    <div class="sheet-body">
+      <div>
+        <h3><span class="ph">[Project name]</span></h3>
+        <p><span class="ph">[One sentence: what the device does and who or what it is for.]</span></p>
+        <span class="label">The problem</span>
+        <p><span class="ph">[What needed solving, and the requirement that mattered most.]</span></p>
+        <span class="label">What I did</span>
+        <p><span class="ph">[Your role and the key decisions you made.]</span></p>
+        <span class="label">Result</span>
+        <p><span class="ph">[What it did when tested, with a measured result if possible.]</span></p>
+      </div>
+      <div>
+        <div class="photo">[Photo of finished device<br>or short demo clip]</div>
+        <table class="spec">
+          <tr><th>Controller</th><td><span class="ph">[Arduino model, or none]</span></td></tr>
+          <tr><th>Sensors / actuators</th><td><span class="ph">[List]</span></td></tr>
+          <tr><th>Tools</th><td><span class="ph">[CAD, 3D printer, soldering, etc.]</span></td></tr>
+          <tr><th>Code</th><td><span class="ph">[Link to repo, if public]</span></td></tr>
+        </table>
+      </div>
+    </div>
+    <ol class="stages">
+      <li><span class="n">1 / Design</span><span class="ph">[Sketches, CAD, requirements]</span></li>
+      <li><span class="n">2 / Test</span><span class="ph">[What you tested and what you learned]</span></li>
+      <li><span class="n">3 / Prototype</span><span class="ph">[First working version]</span></li>
+      <li><span class="n">4 / Build</span><span class="ph">[Final version and what changed]</span></li>
+    </ol>
+  </article>
+
+  <article class="sheet" id="project-3">
+    <div class="sheet-head"><span>Project 03</span><span><span class="ph">[Month]</span> to <span class="ph">[Month]</span> 2026 / <span class="ph">[Solo or team of N]</span></span></div>
+    <div class="sheet-body">
+      <div>
+        <h3><span class="ph">[Project name]</span></h3>
+        <p><span class="ph">[One sentence: what the device does and who or what it is for.]</span></p>
+        <span class="label">The problem</span>
+        <p><span class="ph">[What needed solving, and the requirement that mattered most.]</span></p>
+        <span class="label">What I did</span>
+        <p><span class="ph">[Your role and the key decisions you made.]</span></p>
+        <span class="label">Result</span>
+        <p><span class="ph">[What it did when tested, with a measured result if possible.]</span></p>
+      </div>
+      <div>
+        <div class="photo">[Photo of finished device<br>or short demo clip]</div>
+        <table class="spec">
+          <tr><th>Controller</th><td><span class="ph">[Arduino model, or none]</span></td></tr>
+          <tr><th>Sensors / actuators</th><td><span class="ph">[List]</span></td></tr>
+          <tr><th>Tools</th><td><span class="ph">[CAD, 3D printer, soldering, etc.]</span></td></tr>
+          <tr><th>Code</th><td><span class="ph">[Link to repo, if public]</span></td></tr>
+        </table>
+      </div>
+    </div>
+    <ol class="stages">
+      <li><span class="n">1 / Design</span><span class="ph">[Sketches, CAD, requirements]</span></li>
+      <li><span class="n">2 / Test</span><span class="ph">[What you tested and what you learned]</span></li>
+      <li><span class="n">3 / Prototype</span><span class="ph">[First working version]</span></li>
+      <li><span class="n">4 / Build</span><span class="ph">[Final version and what changed]</span></li>
+    </ol>
+  </article>
+
+  <div class="sec-head"><h2>Toolbox</h2><p>What I used across all three</p></div>
+  <div class="cols">
+    <div class="box"><h3>Design</h3><ul><li><span class="ph">[CAD software]</span></li><li><span class="ph">[Sketching / schematics]</span></li></ul></div>
+    <div class="box"><h3>Electronics + code</h3><ul><li>Arduino</li><li><span class="ph">[Languages, libraries]</span></li><li><span class="ph">[Soldering, breadboarding]</span></li></ul></div>
+    <div class="box"><h3>Fabrication</h3><ul><li><span class="ph">[3D printing, laser cutting, hand tools]</span></li><li><span class="ph">[Testing equipment]</span></li></ul></div>
+  </div>
+
+  <section class="contact">
+    <h2>Summer 2027</h2>
+    <p>I am looking for an engineering internship in Boston or New York. Send me a note and I will reply with a resume and more detail on any project.</p>
+    <div class="mail">
+      <code id="addr">eleanorspalmer@gmail.com</code>
+      <button class="copy" id="copy" type="button">Copy email</button>
+    </div>
+    <p><span class="ph">[Add your resume link and LinkedIn or GitHub here]</span></p>
+  </section>
+
+  <footer>Eleanor Palmer / Engineering portfolio / Updated October 2026</footer>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById("copy");
+  var addr = document.getElementById("addr");
+  btn.addEventListener("click", function () {
+    var text = addr.textContent;
+    function fallback() {
+      try {
+        var r = document.createRange();
+        r.selectNodeContents(addr);
+        var s = window.getSelection();
+        s.removeAllRanges();
+        s.addRange(r);
+      } catch (e) {}
+      btn.textContent = "Selected, press copy";
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = "Copied";
+        setTimeout(function () { btn.textContent = "Copy email"; }, 1800);
+      }, fallback);
+    } catch (e) { fallback(); }
+  });
+})();
+</script>
