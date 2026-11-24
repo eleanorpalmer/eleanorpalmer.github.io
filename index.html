@@ -45,7 +45,7 @@ body {
   padding-inline: 20px;
   padding-block: 0 48px;
 }
-.wrap { max-width: 1120px; margin-inline: auto; }
+.wrap { max-width: 1280px; margin-inline: auto; }
 a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 3px; text-underline-offset: 4px; }
 a:hover { text-decoration-thickness: 5px; }
 :focus-visible { outline: 3px solid var(--fg); outline-offset: 3px; }
@@ -67,10 +67,12 @@ nav.bar ul a[aria-current="page"] { text-decoration: underline; text-decoration-
 .label { font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
 
 /* Home hero */
-.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 48px 72px; align-items: center; padding-block: 56px 80px; }
-@media (max-width: 800px) { .hero { grid-template-columns: minmax(0, 1fr); padding-block: 40px 56px; } }
-h1 { font-weight: 800; font-size: clamp(44px, 10.5vw, 112px); line-height: 0.92; letter-spacing: -0.035em; text-transform: uppercase; margin: 0 0 22px; overflow-wrap: anywhere; }
-.role { font-size: 14px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 28px; }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 48px 72px; align-items: center; padding-block: 56px 48px; }
+@media (max-width: 800px) { .hero { grid-template-columns: minmax(0, 1fr); padding-block: 40px 32px; } }
+h1 { font-weight: 800; font-size: clamp(32px, 7vw, 70px); line-height: 0.92; letter-spacing: -0.035em; text-transform: uppercase; margin: 0 0 22px; overflow-wrap: anywhere; }
+.bio { color: var(--muted); max-width: 56ch; margin: 0 0 30px; font-size: 17px; }
+.bio p { margin: 0 0 14px; }
+.bio p:last-child { margin-bottom: 0; }
 .lede { color: var(--muted); max-width: 50ch; margin: 0 0 30px; font-size: 18px; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
 .btn { display: inline-block; font-family: var(--font); font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; padding: 15px 26px; text-decoration: none; border: 2px solid var(--fg); color: var(--fg); background: transparent; cursor: pointer; border-radius: 0; }
@@ -88,9 +90,9 @@ h1 { font-weight: 800; font-size: clamp(44px, 10.5vw, 112px); line-height: 0.92;
 .frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
 /* Sections */
-.block { display: grid; grid-template-columns: minmax(0, 0.75fr) minmax(0, 2.25fr); gap: 20px 56px; padding-block: 64px; border-top: 2px solid var(--fg); }
-@media (max-width: 800px) { .block { grid-template-columns: minmax(0, 1fr); padding-block: 48px; } }
-h2 { font-weight: 800; font-size: clamp(26px, 3.6vw, 34px); line-height: 1.05; letter-spacing: -0.02em; text-transform: uppercase; margin: 0 0 10px; }
+.block { display: grid; grid-template-columns: minmax(0, 0.75fr) minmax(0, 2.25fr); gap: 20px 56px; padding-block: 36px; border-top: 2px solid var(--fg); }
+@media (max-width: 800px) { .block { grid-template-columns: minmax(0, 1fr); padding-block: 28px; } }
+h2 { font-weight: 800; font-size: clamp(22px, 3vw, 28px); line-height: 1.05; letter-spacing: -0.02em; text-transform: uppercase; margin: 0 0 10px; }
 .sub { color: var(--muted); margin: 0; font-size: 16px; max-width: 30ch; }
 .content { min-width: 0; }
 .content p { margin: 0 0 16px; max-width: 64ch; }
@@ -104,7 +106,7 @@ h2 { font-weight: 800; font-size: clamp(26px, 3.6vw, 34px); line-height: 1.05; l
 .resume { background: var(--blush); padding: 36px 32px; display: grid; gap: 32px; }
 @media (max-width: 800px) { .resume { padding: 26px 20px; } }
 .resume-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; }
-.resume-top p { margin: 0; max-width: 40ch; }
+.resume-top p { margin: 0; font-weight: 700; }
 .resume .btn:hover { background: var(--fg); }
 .resume .btn.primary { background: var(--fg); border-color: var(--fg); color: var(--bg); }
 .resume .btn.primary:hover { background: transparent; color: var(--fg); }
@@ -122,42 +124,38 @@ h2 { font-weight: 800; font-size: clamp(26px, 3.6vw, 34px); line-height: 1.05; l
 .mail { display: block; font-weight: 800; font-size: clamp(22px, 4.2vw, 36px); letter-spacing: -0.02em; line-height: 1.2; overflow-wrap: anywhere; margin-bottom: 14px; }
 .copy { font-family: var(--font); font-weight: 700; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; background: transparent; color: var(--fg); border: 2px solid var(--fg); padding: 8px 16px; cursor: pointer; border-radius: 0; }
 .copy:hover { background: var(--fg); color: var(--bg); }
-.contact-rows { margin: 32px 0 0; border-top: 1px solid var(--rule); }
-.contact-rows div { display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 4px 20px; padding-block: 12px; border-bottom: 1px solid var(--rule); }
-@media (max-width: 560px) { .contact-rows div { grid-template-columns: minmax(0, 1fr); } }
-.contact-rows dt { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--muted); padding-top: 3px; }
-.contact-rows dd { margin: 0; overflow-wrap: anywhere; }
 
 /* Projects view */
-.page-head { padding-block: 56px 48px; }
-.page-head h1 { font-size: clamp(44px, 10vw, 104px); margin-bottom: 18px; }
+.page-head { padding-block: 56px 12px; }
+.page-head h1 { font-size: clamp(36px, 8vw, 80px); margin-bottom: 0; }
 .page-head p.intro { max-width: 60ch; color: var(--muted); margin: 0 0 22px; font-size: 18px; }
-.steps { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin: 0; }
 
-.feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px 56px; align-items: start; padding-block: 48px; border-top: 2px solid var(--fg); }
-@media (max-width: 800px) { .feature { grid-template-columns: minmax(0, 1fr); padding-block: 36px; } }
-.gallery { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.feature { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 32px 56px; align-items: start; padding-block: 32px; border-top: 2px solid var(--fg); }
+@media (max-width: 800px) { .feature { grid-template-columns: minmax(0, 1fr); padding-block: 24px; } }
+.gallery { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+@media (max-width: 800px) { .gallery { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; } }
 .shot { margin: 0; min-width: 0; }
-.shot .img { aspect-ratio: 4 / 3; max-width: 100%; background: var(--blush); display: grid; place-items: center; text-align: center; padding: 16px; color: var(--muted); font-size: 14px; overflow: hidden; }
-.shot .img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.shot .img { max-width: 85%; background: var(--blush); display: grid; place-items: center; text-align: center; padding: 16px; color: var(--muted); font-size: 14px; overflow: hidden; }
+.shot .img img { width: 100%; height: auto; object-fit: contain !important; display: block; }
 .shot.video { margin-top: 28px; }
 .shot video { display: block; width: 100%; aspect-ratio: 16 / 9; background: var(--blush); }
 .shot figcaption { font-size: 13px; color: var(--muted); padding-top: 8px; }
 .feature .facts { margin: 0 0 8px; }
 .feature .label { margin: 20px 0 6px; }
-.feature p.summary { color: var(--fg); font-size: 19px; font-weight: 500; line-height: 1.5; max-width: 36ch; margin: 0 0 18px; }
+.feature p.summary { color: var(--fg); font-size: 19px; font-weight: 500; line-height: 1.5; max-width: 48ch; margin: 0 0 18px; }
 .num { font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; display: inline-block; padding-bottom: 4px; border-bottom: 3px solid var(--accent); }
 .date { margin-left: 14px; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 .feature .label:first-child { margin-top: 0; }
-h3.title { font-weight: 800; font-size: clamp(26px, 3.6vw, 36px); line-height: 1.08; letter-spacing: -0.025em; text-transform: uppercase; margin: 16px 0 14px; }
-.feature p { margin: 0 0 14px; color: var(--muted); max-width: 56ch; }
-.feature .list { margin-bottom: 18px; }
+h3.title { font-weight: 800; font-size: clamp(22px, 3vw, 30px); line-height: 1.08; letter-spacing: -0.025em; text-transform: uppercase; margin: 16px 0 14px; }
+.feature p { margin: 0 0 14px; color: var(--muted); max-width: 68ch; }
+.feature .tags { margin-bottom: 30px; }
+.feature .list { gap: 12px; margin-bottom: 18px; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .tags li { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border: 1.5px solid var(--fg); padding: 3px 10px; }
 
 .earlier { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-.mini { border-top: 2px solid var(--fg); padding-top: 18px; min-width: 0; }
-.mini h3 { font-weight: 800; font-size: 20px; line-height: 1.2; letter-spacing: -0.015em; text-transform: uppercase; margin: 14px 0 8px; }
+.mini { border-top: 2px solid var(--fg); padding-top: 12px; min-width: 0; }
+.mini h3 { font-weight: 800; font-size: 18px; line-height: 1.2; letter-spacing: -0.015em; text-transform: uppercase; margin: 14px 0 8px; }
 .mini p { margin: 0 0 12px; color: var(--muted); }
 
 .ph { color: var(--ph); background: var(--ph-bg); padding: 0 6px; font-size: 0.92em; }
@@ -165,17 +163,17 @@ h3.title { font-weight: 800; font-size: clamp(26px, 3.6vw, 36px); line-height: 1
 
 .cta { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px; }
 
-footer { border-top: 2px solid var(--fg); padding-top: 20px; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+footer { border-top: 2px solid var(--fg); padding-top: 14px; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
 </style></head><body>
 
 <nav class="bar" aria-label="Main">
   <div class="wrap">
     <a class="brand" href="#top">Eleanor Palmer</a>
     <ul>
-      <li><a href="#top" data-nav="home" aria-current="page">Home.</a></li>
-      <li><a href="#projects" data-nav="projects">Projects.</a></li>
-      <li><a href="#resume" data-nav="resume">Resume.</a></li>
-      <li><a href="#contact" data-nav="contact">Contact.</a></li>
+      <li><a href="#top" data-nav="home" aria-current="page">Home</a></li>
+      <li><a href="#projects" data-nav="projects">Projects</a></li>
+      <li><a href="#resume" data-nav="resume">Resume</a></li>
+      <li><a href="#contact" data-nav="contact">Contact</a></li>
     </ul>
   </div>
 </nav>
@@ -188,45 +186,28 @@ footer { border-top: 2px solid var(--fg); padding-top: 20px; font-size: 13px; fo
     <div class="portrait">
       <div class="frame">
         <span class="initials">EP</span>
-        <small><span class="ph">[Add your headshot as headshot.jpg]</span></small>
         <img src="headshot.jpg" alt="Portrait of Eleanor Palmer" onerror="this.remove()">
       </div>
     </div>
     <div>
-      <h1>Eleanor<br>Palmer.</h1>
-      <p class="role">Mechanical engineering // Washington University in St. Louis</p>
-      <p class="lede">I design, test and build things that work. Last summer I took three physical devices from sketch to working hardware, with the CAD, the fabrication and the code to match.</p>
+      <h1>Eleanor<br>Palmer</h1>
+      <div class="bio">
+        <p>I am currently a third year studying Mechanical Engineering at Washington University in St. Louis.</p>
+        <p>I am a creative and curious problem solver who values diverse perspectives when approaching a problem. I am passionate about the intersection of engineering, sustainability, and society and how thoughtful design can lead to meaningful change. I am excited by collaborative work and rapid prototyping. I am currently seeking an internship for summer 2027.</p>
+        <p>In my free time, I like to be outside: sailing, surfing, hiking, skiing, or cooking food for family and friends.</p>
+      </div>
       <div class="actions">
         <a class="btn primary" href="#projects">View projects</a>
         <a class="btn" href="#resume">Resume</a>
         <a class="btn" href="https://www.linkedin.com/in/eleanor-palmer38" target="_blank" rel="noopener">LinkedIn</a>
       </div>
-      <p class="where">Seeking summer 2027 // Boston or New York</p>
     </div>
   </header>
 
-  <section class="block" id="about">
-    <div>
-      <h2>About.</h2>
-      <p class="sub">The short version.</p>
-    </div>
-    <div class="content">
-      <p>I'm studying mechanical engineering at Washington University in St. Louis, with a minor in computer science. I like work where I can sketch an idea, model it in CAD, build it in the shop and write the code that runs it.</p>
-      <p>This past summer I worked with Motim Industries and Mass General Hospital, where I designed and built three manufacturing tools for computed tomography machine components, from first design through fabrication and documentation.</p>
-      <p>I'm looking for an engineering internship for summer 2027 in Boston or New York. Outside of class I sail, surf, hike, ski and cook, and I'm into fashion and creative design.</p>
-      <p><span class="ph">[Edit this bio so it sounds like you. I wrote it from your resume.]</span></p>
-      <dl class="facts">
-        <div><dt>Studying</dt><dd>B.S. Mechanical Engineering, minor in Computer Science. Expected May 2028.</dd></div>
-        <div><dt>Looking for</dt><dd>Engineering internship, summer 2027</dd></div>
-        <div><dt>Locations</dt><dd>Boston, MA and New York, NY</dd></div>
-        <div><dt>Tools</dt><dd>SolidWorks, 3D printing, lathe, mill, soldering, Arduino, C++, Python</dd></div>
-      </dl>
-    </div>
-  </section>
 
   <section class="block" id="resume">
     <div>
-      <h2>Resume.</h2>
+      <h2>Resume</h2>
       <p class="sub">A quick look. The full version is a PDF.</p>
     </div>
     <div class="content">
@@ -250,8 +231,7 @@ footer { border-top: 2px solid var(--fg); padding-top: 20px; font-size: 13px; fo
             <ul class="list">
               <li>Java, Python, C, C++, Arduino</li>
               <li>CAD modeling, lathe, mill, soldering, 3D printing</li>
-              <li>McKelvey Fellowship, Executive Team</li>
-              <li>Engineering Test Kitchen, Project Lead</li>
+              <li>McKelvey Fellowship, VP of New Member Education &amp; Professional Outreach</li>
               <li>Society of Women Engineers</li>
             </ul>
           </div>
@@ -262,18 +242,14 @@ footer { border-top: 2px solid var(--fg); padding-top: 20px; font-size: 13px; fo
 
   <section class="block" id="contact">
     <div>
-      <h2>Contact.</h2>
-      <p class="sub">Email or LinkedIn is the best way to reach me.</p>
+      <h2>Contact</h2>
+      <p class="sub">Email or LinkedIn are the best ways to reach me.</p>
     </div>
     <div class="content">
       <a class="mail" id="addr" href="mailto:eleanorspalmer@gmail.com">eleanorspalmer@gmail.com</a>
       <button class="copy" id="copy" type="button">Copy email</button>
-      <dl class="contact-rows">
-        <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/eleanor-palmer38" target="_blank" rel="noopener">linkedin.com/in/eleanor-palmer38</a></dd></div>
-        <div><dt>GitHub</dt><dd><span class="ph">[Your GitHub address]</span></dd></div>
-        <div><dt>Based in</dt><dd>The Boston area</dd></div>
-        <div><dt>Looking for</dt><dd>Engineering internship, summer 2027, in Boston or New York</dd></div>
-      </dl>
+      <a class="mail" style="margin-top:32px; font-size:clamp(18px, 3.2vw, 28px)" href="https://www.linkedin.com/in/eleanor-palmer38" target="_blank" rel="noopener">linkedin.com/in/eleanor-palmer38</a>
+      <a class="copy" style="display:inline-block; text-decoration:none" href="https://www.linkedin.com/in/eleanor-palmer38" target="_blank" rel="noopener">Open LinkedIn</a>
     </div>
   </section>
 </main>
@@ -281,63 +257,51 @@ footer { border-top: 2px solid var(--fg); padding-top: 20px; font-size: 13px; fo
 <!-- ============ PROJECTS ============ -->
 <main id="view-projects" hidden>
   <header class="page-head">
-    <p class="label">Summer 2026 // Motim Industries x Mass General Hospital</p>
-    <h1>Projects.</h1>
-    <p class="intro">I led the life-cycle development of three manufacturing tools for computed tomography machine components. Each one went from design requirements to a working, documented tool, using SolidWorks and 3D printing.</p>
-    <p class="steps">Design // Test // Prototype // Build</p>
+    <h1>Projects</h1>
   </header>
 
   <article class="feature">
     <div>
-      <span class="num">01</span><span class="date">July 2026</span>
+      <span class="num">01</span><span class="date">May 2026</span>
       <h3 class="title">Ceramic wet saw</h3>
       <p class="summary">A compact wet saw that cuts ceramic rods cleanly to an exact, adjustable length.</p>
-      <ul class="tags"><li>SolidWorks</li><li>3D printing</li><li>Soldering</li><li>Fabrication</li></ul>
-    </div>
-    <div>
+      <ul class="tags"><li>SolidWorks</li><li>3D printing</li><li>Soldering</li><li>Fabrication</li><li>Lathe &amp; Mill work</li></ul>
       <span class="label">The problem</span>
-      <p>Ceramic alumina rods had to be cut to length quickly and cleanly for assembling gate assemblies. Cutting them in our own shop was easier than having them manufactured.</p>
+      <p>I needed to cut Ceramic Alumina rods to clean, repeatable lengths to be used as separators in a more complex part assembly for a computed tomography machine. Cutting the rods on-site was preferable over having them manufactured, as it allowed for rapid iterations and faster testing of the larger part assembly.</p>
       <span class="label">What I did</span>
-      <p>I started with sketches and research into the best ways to cut ceramics, then modeled several designs in CAD and 3D printed each variation to compare.</p>
-      <ul class="list"><li><b>Wet cutting.</b> Dry cuts weren't clean enough, so I researched and bought several pumps to test. Water first came through a dental floss tip, which I replaced with a Loc-Line nozzle.</li><li><b>Reused parts.</b> I took the motor and switch from an older handheld saw and re-soldered the connections to work in the new device.</li><li><b>Keeping it dry.</b> I built a sealed, waterproof section for the motor and circuitry and tested several guards to cut down splashing.</li><li><b>Recycled water.</b> A chamber at the bottom holds the pump, and drainage holes under the rod return the water to it.</li><li><b>Cleaner cuts.</b> A clamp on top reduces the vibration that was making cuts rough.</li><li><b>Exact lengths.</b> I measured and added an adjustable end stop so every rod comes out the same length.</li></ul>
-      <span class="label">Result</span>
-      <p><span class="ph">[Add a result: what it cuts, how precisely, or how the team uses it.]</span></p>
+      <p>I started with sketches and research into the best ways to cut ceramics. Then I modeled several designs in CAD, 3D printed, and worked in the shop to adjust the metal components. I tested each iteration of my design on sample rods and made revisions until the saw cut smoothly and accurately.</p>
+      <ul class="list"><li><b>Wet cutting.</b> Dry cutting would not result in clean cuts; the rods chipped. So I researched and bought several water pumps to test, as well as nozzles/tubing types, eventually landing on a Loc-Line Nozzle.</li><li><b>Sourcing parts.</b> I took the motor and switch from an older handheld saw and re-soldered the connections to work in the new device. I sourced the other parts from McMaster-Carr.</li><li><b>Keeping it dry.</b> I built a sealed, waterproof section for the motor and circuitry and tested several blade guards to cut down splashing.</li><li><b>Accurate cuts.</b> During test cuts, rods vibrated in the V-groove of the saw, which led to uneven cuts; I printed a clamping lever piece to secure them down, resulting in straighter cuts. To achieve precise overall length I added an adjustable screw stopper and length markings along the saw base surface.</li><li><b>Implementation.</b> My final design made repeatable, accurate cuts. I wrote a maintenance manual and user guide. The saw was successfully used by the team working on the larger assembly through their building process.</li></ul>
     </div>
     <div class="gallery">
-      <figure class="shot"><div class="img"><img src="wetsaw-1-prototype.jpg" alt="White and blue 3D printed prototype wet saw with the blade, motor arm and water chamber" loading="lazy"></div><figcaption>An early prototype, with a water chamber built into the base.</figcaption></figure>
-      <figure class="shot"><div class="img"><img src="wetsaw-2-marks.jpg" alt="Top view of the prototype with the blade and rod center marked on the blue plate" loading="lazy"></div><figcaption>Top view of the prototype, with the blade and rod center marked.</figcaption></figure>
-      <figure class="shot"><div class="img"><img src="wetsaw-3-final.jpg" alt="Final yellow wet saw seen from above with clamp, Loc-Line nozzle and end stop" loading="lazy"></div><figcaption>The final build, with the top clamp, Loc-Line nozzle and adjustable end stop.</figcaption></figure>
-      <figure class="shot"><div class="img"><img src="wetsaw-4-final.jpg" alt="Final yellow wet saw with a ceramic rod in place under the nozzle" loading="lazy"></div><figcaption>A ceramic rod in place, with water directed at the cut.</figcaption></figure>
+      <figure class="shot"><div class="img"><img src="wetsaw-1-cad.jpg" alt="CAD model of the wet saw with the blade arm, guard and sliding rod tray on the base" loading="lazy" style="object-fit: contain"></div><figcaption>SolidWorks assembly of wet saw.</figcaption></figure>
+      <figure class="shot"><div class="img"><img src="wetsaw-2-marks.jpg" alt="Top view of the prototype with the blade and rod center marked on the blue plate" loading="lazy" style="object-fit: contain"></div><figcaption>Early prototype with blade and rod center marked.</figcaption></figure>
+      <figure class="shot"><div class="img"><img src="wetsaw-3-top.jpg" alt="Final yellow wet saw seen from above with top clamp, Loc-Line nozzle and spray reducer" loading="lazy" style="object-fit: contain"></div><figcaption>Final product including top clamp, Loc-Line nozzle and spray reducer.</figcaption></figure>
+      <figure class="shot"><div class="img"><img src="wetsaw-4-rod.jpg" alt="Final yellow wet saw with a ceramic rod in place under the nozzle" loading="lazy" style="object-fit: contain"></div><figcaption>Final design with ceramic alumina rod in place and water directed at cut.</figcaption></figure>
     </div>
   </article>
 
   <article class="feature">
     <div>
-      <span class="num">02</span><span class="date">July 2026</span>
+      <span class="num">02</span><span class="date">June 2026</span>
       <h3 class="title">Otoscope fiducial aligner</h3>
-      <p class="summary">A fixture for visually aligning ceramic cathode plates by their fiducial markers.</p>
-      <ul class="tags"><li>SolidWorks</li><li>3D printing</li><li>Prototyping</li></ul>
-    </div>
-    <div>
+      <p class="summary">A device to visually align thin ceramic plates hosting cathodes within a larger assembly using their fiducial markers.</p>
+      <ul class="tags"><li>SolidWorks</li><li>3D printing</li><li>Prototyping</li><li>Shop work</li></ul>
       <span class="label">The problem</span>
-      <p>Alumina plates carrying printed cathodes had to be aligned accurately with the larger metal gate assemblies that hold the sources in a computed tomography machine. The plates' outer edges aren't manufactured precisely enough to align by, so the fiducial markers on each plate have to be lined up visually instead.</p>
+      <p>To achieve the best efficiency between electrons emitted from source cathodes on a ceramic plate and their target, the cathodes need to be as precisely aligned as possible with the layers of metal plates placed above them in their assembly part. I needed to find a way to achieve this without relying on the outer edges of the ceramic cathode plates, as they were not manufactured with precise enough tolerances. I utilized small fiducial markers printed onto the plates to visually align them within the assembly.</p>
       <span class="label">What I did</span>
-      <p>I started with hand sketches, then went through many rounds of CAD, 3D printing and testing, checking each piece as I went.</p>
+      <p>I started with hand sketching design concepts. I then researched different microscopes and small cameras needed to see the small fiducial marks. Finally, I went through multiple rounds of CAD and 3D printing different components of my device, testing and checking my design with model pieces of the cathode plates and larger assembly.</p>
       <ul class="list">
-        <li><b>A fit for any gate.</b> The outsides of the gate assemblies aren't consistent, so the fixture couldn't clamp onto them. Instead, raised bits on its surface slide into the slots where the cathodes align, so any gate snaps on and stays put. I tested the fit with a plastic sample gate.</li>
-        <li><b>A change from testing.</b> My first design screwed the gate down from the top (see the CAD model), but driving in the placement screws after alignment could shift the parts. The snap-on design fixed this and leaves room to add the screws afterward.</li>
-        <li><b>Making the fiducials easy to see.</b> I tuned the otoscope light's brightness and distance so the screen stays black except where light passes through the ceramic around each fiducial, giving a clear outline to center.</li>
-        <li><b>Standalone by design.</b> I chose otoscopes with built-in displays so the fixture runs without a computer and can stay in the workshop. It also works with laptop software.</li>
-        <li><b>Built for the shop.</b> After testing several mounts, I put the otoscopes in a detachable piece below the fixture for easy maintenance, and added extended back legs so the heavy displays can't tip it.</li>
+        <li><b>A fit for any gate.</b> Each layer of the assembly had oval slots where the cathodes align and the electrons flow through. I created extruded oval shapes on the surface of my device to slide and lock into these slots and hold the larger assembly down. This allowed my device to work seamlessly with any of the larger gate assemblies, as they all had unique outer shapes, making other sorts of clamps difficult to make universal.</li>
+        <li><b>Seeing the fiducials.</b> The geometry of the assembly is such that the fiducials can only be seen from the bottom of the assembly and through a tiny hole. After researching multiple camera options, I opted to use otoscopes. The small cameras, meant for looking in ears, worked well to see the underside of the assembly through the small hole. Additionally, by changing the lighting brightness on the cameras, I could eliminate glare from the metal assembly, making the fiducials easier to see.</li>
+        <li><b>Standalone by design.</b> I chose otoscopes with individual displays and directly integrated them into my design. This let my device be completely standalone rather than needing to be plugged into a laptop or other device. Since my device was to be used by multiple people but always in the lab space, this was optimal.</li>
+        <li><b>Implementation.</b> I wrote a user manual for my device and trained the team members on proper use. My device was placed in the team's lab and used to precisely align the cathode layered assemblies for the development of the computed tomography machine.</li>
       </ul>
-      <span class="label">Result</span>
-      <p><span class="ph">[Add a result: what it aligns, how precisely, or how the team uses it.]</span></p>
     </div>
     <div class="gallery">
-      <figure class="shot"><div class="img"><img src="aligner-1-cad.jpg" alt="SolidWorks model of the aligner stand with the sample tray lifted above it" loading="lazy"></div><figcaption>Early SolidWorks model, with screw tabs for holding the gate down from the top.</figcaption></figure>
-      <figure class="shot"><div class="img"><img src="aligner-2-side.jpg" alt="Side view of the finished aligner stand with two otoscope displays on top" loading="lazy"></div><figcaption>Side view of the finished stand, showing the extended leg supports.</figcaption></figure>
-      <figure class="shot"><div class="img"><img src="aligner-3-top.jpg" alt="Top view of the sample tray on the base plate beside two running otoscope displays" loading="lazy"></div><figcaption>Sample gate assembly and plate in place, with both displays showing a lit fiducial.</figcaption></figure>
-      <figure class="shot"><div class="img"><img src="aligner-4-final.jpg" alt="Angled view of the finished aligner with both displays showing a bore" loading="lazy"></div><figcaption>Finished build with both displays on.</figcaption></figure>
+      <figure class="shot"><div class="img"><img src="FiducialCameraCAD.png" alt="SolidWorks model of the aligner stand with the sample trays on top and the display holder behind" loading="lazy"></div><figcaption>SolidWorks assembly of otoscope fiducial aligner with metal plate assembly on top.</figcaption></figure>
+      <figure class="shot"><div class="img"><img src="aligner-2-side.jpg" alt="Front view of the finished aligner stand with a model assembly and two otoscope displays on top" loading="lazy"></div><figcaption>Front view of final product with a model assembly on top.</figcaption></figure>
+      <figure class="shot"><div class="img"><img src="aligner-3-top-new.jpg" alt="Top view of the sample tray on the base plate beside two running otoscope displays" loading="lazy" style="object-fit: contain"></div><figcaption>Top view showing model cathode assembly and calibrated display settings for easiest fiducial aligning.</figcaption></figure>
+      <figure class="shot"><div class="img"><img src="aligner-4-angled.jpg" alt="Angled view of the finished aligner with both displays showing a bore" loading="lazy" style="object-fit: contain"></div><figcaption>Final product on its own.</figcaption></figure>
     </div>
   </article>
 
@@ -345,8 +309,18 @@ footer { border-top: 2px solid var(--fg); padding-top: 20px; font-size: 13px; fo
     <div>
       <span class="num">03</span><span class="date">July 2026</span>
       <h3 class="title">Fiber optic wire cutter</h3>
-      <p class="summary">A machine that cuts fiber and wire to length and marks each piece, with a calibration interface I coded myself.</p>
-      <ul class="tags"><li>Arduino R4 WiFi</li><li>C++</li><li>HTML</li><li>SolidWorks</li><li>Soldering</li></ul>
+      <p class="summary">A machine and website system that cuts and marks fiber optic and copper wire to customizable lengths and marking patterns.</p>
+      <ul class="tags"><li>Arduino R4 WiFi</li><li>C++</li><li>HTML</li><li>SolidWorks</li><li>Soldering</li><li>Circuit Design</li><li>3D printing</li><li>Servo &amp; stepper motors</li></ul>
+      <span class="label">The problem</span>
+      <p>I needed to cut and mark fiber optic wires and copper electrical wires to specific lengths with certain markings. Multiple different configurations for each were necessary for the construction of a computed tomography machine. The wires needed were a mix of repeated lengths and fully unique lengths and marking patterns, with many versions of each needed. In order to achieve this, I created an automated cutting machine with a custom website interface for the user to customize each cut.</p>
+      <span class="label">What I did</span>
+      <p>I wanted the cuts to be fully customizable. I originally thought of using buttons with preset cut lengths and marking patterns, then I remembered using an Arduino R4 WiFi in my circuits class and decided to utilize one for my design so I could host a web interface allowing for more control and customization. I started by hand sketching the physical components, CADing and printing them. I then moved to circuit design and built the electrical components. Finally, I coded the web interface in HTML and used C++ for the Arduino controls on the physical device.</p>
+      <ul class="list">
+        <li><b>Measuring the wires.</b> I used a stepper motor to control a V-grooved driving wheel which pulls the cable off its spool. I used the geometry of the driving wheel and the number of steps the motor took to keep track of and determine the length of the wire. I added grip tape to the following wheel, which holds the wire down, to reduce slippage and keep the length accurate.</li>
+        <li><b>Marking.</b> My initial sketches used a lever arm to control the marker. I later pivoted to using a servo motor and spring mechanism moving the marker horizontally, which allowed for quicker, more accurate marks and a smaller, more compact overall device design.</li>
+        <li><b>Web interface.</b> I made a web interface which controls the device and allows users to customize their cut. The site has both preset buttons for set pattern lengths for markings and an option to manually enter placement of each mark. I added options for including slack length (before any marks), overall length, and quantity.</li>
+        <li><b>Implementation.</b> I created detailed documentation, current status, next steps, and clear guide to the code. I finished the project up until testing the blade mechanism so I met with other team members who would continue the project to explain my steps and answer questions to allow for a seamless hand off.</li>
+      </ul>
       <figure class="shot video">
         <video controls muted loop playsinline preload="metadata" poster="cutter-demo-poster.jpg" aria-label="The fiber optic cutter running">
           <source src="cutter-demo.mp4" type="video/mp4">
@@ -355,46 +329,37 @@ footer { border-top: 2px solid var(--fg); padding-top: 20px; font-size: 13px; fo
         <figcaption>The cutter running, with the fiber spool turning.</figcaption>
       </figure>
     </div>
-    <div>
-      <span class="label">The problem</span>
-      <p>Different types of fiber and wire needed to be cut to length for a computed tomography machine, and each material needed its own length. Every piece also had to be easy to identify and carry marks at specific positions along it.</p>
-      <span class="label">What I did</span>
-      <p>I wanted the cutter to be fully customizable. I first thought about buttons with presets, then remembered using an Arduino R4 WiFi in my circuits class and realized it could host a web interface with far more control. I started by sketching the physical parts, then built them around that idea.</p>
-      <ul class="list">
-        <li><b>Feeding the fiber.</b> A stepper motor turns a V-grooved drive wheel that pulls the cable off the spool, and the length comes from counting the motor's turns. A wheel on top presses on the cable, wrapped in grip tape I found to reduce slipping.</li>
-        <li><b>Marking.</b> My first sketch used an arm to control the marker. I changed that to a servo and a spring that move the marker sideways on and off the moving cable.</li>
-        <li><b>Cutting.</b> The blade sits after the marking station and is motor-controlled.</li>
-        <li><b>The web interface.</b> I built the interface, which also handles calibration. It sets the length of each piece, the slack before the first mark, and the number of marks. Marks can be evenly spaced with a preset or entered by hand for uneven spacing. It also sets the quantity, such as five of the same cut.</li>
-        <li><b>Electronics.</b> I wrote the C++ and HTML for the interface and soldered the circuitry myself.</li>
-      </ul>
-      <span class="label">Result</span>
-      <p><span class="ph">[Add a result: cut accuracy, calibration time, or how the team uses it.]</span></p>
-    </div>
     <div class="gallery">
       <figure class="shot"><div class="img"><img src="cutter-1-sketch.jpg" alt="Hand sketch of the fiber cutter concept with labeled parts" loading="lazy"></div><figcaption>First concept sketch, labeled with the drive wheel, cutter and marker arm.</figcaption></figure>
       <figure class="shot"><div class="img"><img src="cutter-2-cad.jpg" alt="SolidWorks model of the cutter housing with the drive wheel and stepper motor" loading="lazy"></div><figcaption>SolidWorks model of the housing, stepper motor and drive wheel.</figcaption></figure>
-      <figure class="shot"><div class="img"><img src="cutter-3-prototype.jpg" alt="Early prototype with a servo-driven arm holding two markers beside the drive wheel" loading="lazy"></div><figcaption>Early prototype, with a servo-driven arm holding markers.</figcaption></figure>
+      <figure class="shot"><div class="img"><img src="cutter-3-prototype-new.jpg" alt="Early prototype with a servo-driven arm holding two markers beside the drive wheel" loading="lazy" style="object-fit: contain"></div><figcaption>Early prototype, with a servo-driven arm holding markers.</figcaption></figure>
       <figure class="shot"><div class="img"><img src="cutter-4-wiring.jpg" alt="Wiring diagram with an Arduino, stepper driver, stepper motor and two servos" loading="lazy"></div><figcaption>Wiring diagram for the stepper motor, driver and two servos.</figcaption></figure>
     </div>
   </article>
 
   <section class="block" style="grid-template-columns:minmax(0,1fr)">
     <div>
-      <h2>More builds.</h2>
+      <h2>More builds</h2>
       <p class="sub" style="max-width:none">Smaller projects from before this summer.</p>
     </div>
     <div class="earlier">
+      <div class="mini">
+        <span class="num">Summer 2025</span>
+        <h3>Upcycled duffle bag</h3>
+        <p>At Refleece, I conceived and led production of an original duffle bag made from upcycled jackets. I generated concept designs, created patterns and die cut samples to optimize material use, and wrote outlines for the sewing manufacturers.</p>
+        <ul class="tags"><li>Product design</li><li>Pattern making</li><li>Die cutting</li><li>Manufacturing</li></ul>
+      </div>
+      <div class="mini">
+        <span class="num">Summer 2023</span>
+        <h3>Portable solar phone charger</h3>
+        <p>At Northeastern University in Prof. Amirabadi’s power electronics lab, I led the technical development of a solar-powered phone charger, from power optimization research to prototyping and field testing.</p>
+        <ul class="tags"><li>Power electronics</li><li>Prototyping</li><li>Field testing</li></ul>
+      </div>
       <div class="mini">
         <span class="num">2023</span>
         <h3>Morse code decoder and light switch</h3>
         <p>Arduino devices that decode Morse code sent by laser, and a light switch triggered by a specific clapping sequence.</p>
         <ul class="tags"><li>Arduino</li><li>C++</li><li>Light and sound sensors</li></ul>
-      </div>
-      <div class="mini">
-        <span class="num">Summer 2023</span>
-        <h3>Portable solar phone charger</h3>
-        <p>At Northeastern University's power electronics lab, I led the technical development of a solar-powered phone charger, from power optimization research to prototyping and field testing.</p>
-        <ul class="tags"><li>Power electronics</li><li>Prototyping</li><li>Field testing</li></ul>
       </div>
     </div>
     <div class="cta">
@@ -404,8 +369,7 @@ footer { border-top: 2px solid var(--fg); padding-top: 20px; font-size: 13px; fo
   </section>
 </main>
 
-<footer style="margin-top:72px">
-  <span>Eleanor Palmer // Mechanical Engineering, WashU</span>
+<footer style="margin-top:40px">
   <span>Updated October 2026</span>
 </footer>
 </div>
